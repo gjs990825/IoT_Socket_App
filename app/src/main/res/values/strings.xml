@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">IoT Socket</string>
+    <string name="title_home">Overview</string>
+    <string name="title_control_center">Control Center</string>
+    <string name="title_commands">Commands</string>
+    <string name="dialog_option_yes">Yes</string>
+    <string name="prompt_confirm_sending">Confirm Sending</string>
+    <string name="prompt_blank_command">Blank Command</string>
+    <string name="prompt_canceled">Canceled</string>
+    <string name="dialog_option_no">No</string>
+    <string name="prompt_command_sent">Command sent</string>
+    <string name="operation_relay_on">Relay On</string>
+    <string name="operation_relay_off">Relay Off</string>
+    <string name="prompt_input_command">Input Command</string>
+    <string name="operation_send_command">Send Command</string>
+    <string name="operation_flip_relay">Flip Switch</string>
+    <string name="text_peripheral">Peripheral</string>
+    <string name="text_relay">Relay</string>
+    <string name="text_led" translatable="false">LED</string>
+    <string name="text_beeper">Beeper</string>
+    <string name="text_motor">Motor</string>
+    <string name="text_sensor">Sensor</string>
+    <string name="text_temperature">Temperature</string>
+    <string name="text_pressure">Pressure</string>
+    <string name="text_brightness">Brightness</string>
+    <string name="text_system">System</string>
+    <string name="text_time">Time</string>
+    <string name="text_sample_text">Sample Text</string>
+    <string name="text_offline">Offline</string>
+    <string name="text_online">Online</string>
+    <string name="text_on">ON</string>
+    <string name="text_off">OFF</string>
+    <string name="prompt_ack_timeout">Ack Timeout</string>
+    <string name="prompt_mqtt_connection_error">MQTT Connection Error!</string>
+    <string name="text_not_a_number" translatable="false">NaN</string>
+    <string name="prompt_send_failed">Send Failed</string>
+    <string name="text_alarm_setting">Alarm Setting</string>
+    <string name="text_periodic">Periodic</string>
+    <string name="text_once">Once</string>
+    <string name="prompt_choose_date">Choose Date</string>
+    <string name="prompt_choose_time">Choose Time</string>
+    <string name="prompt_start">"Start"</string>
+    <string name="prompt_end">End</string>
+    <string name="text_set_alarm">Set Alarm</string>
+    <string name="text_reset">Reset</string>
+</resources>

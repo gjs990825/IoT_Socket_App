@@ -1,0 +1,3 @@
+package com.maverick.iotsocket.model
+
+data class Peripheral(val relay: Boolean, val led: Int, val beeper: Boolean, val motor: Int)

@@ -10,9 +10,10 @@ import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.Gson
+import com.google.gson.JsonSyntaxException
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentHomeBinding
-import com.maverick.iotsocket.model.IoTScoket
+import com.maverick.iotsocket.model.IoTSocket
 import com.maverick.iotsocket.ui.MainActivityViewModel
 
 class HomeFragment : Fragment() {
@@ -28,7 +29,12 @@ class HomeFragment : Fragment() {
     }
     private val homeViewModel by lazy {
         val json = sharedPreferences.getString(homeViewDataKey, "")
-        val ioTSocket = Gson().fromJson(json, IoTScoket::class.java)
+        val ioTSocket: IoTSocket = try {
+            Gson().fromJson(json, IoTSocket::class.java) ?: IoTSocket()
+        } catch (e: JsonSyntaxException) {
+            e.printStackTrace()
+            IoTSocket()
+        }
         Log.v(TAG, "preference restored $json")
         ViewModelProvider(this, HomeViewModelFactory(ioTSocket))[HomeViewModel::class.java]
     }
@@ -46,6 +52,7 @@ class HomeFragment : Fragment() {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.homeViewModel = homeViewModel
+        binding.mainActivityViewModel = mainActivityViewModel
 
         binding.buttonSwitchRelay.setOnClickListener {
             mainActivityViewModel.mqttSendCommand("flip relay")
@@ -86,10 +93,10 @@ class HomeFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         homeViewModel.mqttUnsubscribeTopicState()
-        var ioTSocket: IoTScoket? = null
+        var ioTSocket: IoTSocket? = null
         with(homeViewModel) {
             if (sensor.value != null && peripheral.value != null && systemInfo.value != null) {
-                ioTSocket = IoTScoket(sensor.value!!, peripheral.value!!, systemInfo.value!!)
+                ioTSocket = IoTSocket(sensor.value!!, peripheral.value!!, systemInfo.value!!)
             }
         }
 

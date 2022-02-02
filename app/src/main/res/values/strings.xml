@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">IoT Socket</string>
     <string name="title_home">Overview</string>
-    <string name="title_control_center">Control Center</string>
+    <string name="title_alarms">Alarms</string>
     <string name="title_commands">Commands</string>
+    <string name="title_tasks">Tasks</string>
     <string name="dialog_option_yes">Yes</string>
     <string name="prompt_confirm_sending">Confirm Sending</string>
     <string name="prompt_blank_command">Blank Command</string>
@@ -34,7 +35,7 @@
     <string name="prompt_mqtt_connection_error">MQTT Connection Error!</string>
     <string name="text_not_a_number" translatable="false">NaN</string>
     <string name="prompt_send_failed">Send Failed</string>
-    <string name="text_alarm_setting">Alarm Setting</string>
+    <string name="text_interval_alarm_setting">Interval Alarm Setting</string>
     <string name="text_periodic">Periodic</string>
     <string name="text_once">Once</string>
     <string name="prompt_choose_date">Choose Date</string>
@@ -43,4 +44,14 @@
     <string name="prompt_end">End</string>
     <string name="text_set_alarm">Set Alarm</string>
     <string name="text_reset">Reset</string>
+    <string name="text_remove_alarms">Remove Alarms</string>
+    <string name="text_remove_tasks">Remove Tasks</string>
+    <string name="text_tick_alarm_setting">Tick Alarm Setting</string>
+    <string name="prompt_1_to_59" translatable="false">1~59</string>
+    <string name="prompt_1_to_23" translatable="false">1~23</string>
+    <string name="text_second_number">Second</string>
+    <string name="text_minute">Minute</string>
+    <string name="text_hour">Hour</string>
+    <string name="text_tick_on_every_xth">Tick On\nEvery Xth</string>
+    <string name="prompt_error_empty_command">Error: Empty command</string>
 </resources>

@@ -67,8 +67,13 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun mqttSendCommand(command: String) {
-        mIsLoading.value = true
-        MqttHelper.sendCommand(command, MqttResponseCallback())
+        if (!command.isBlank()) {
+            mIsLoading.value = true
+            MqttHelper.sendCommand(command, MqttResponseCallback())
+        } else {
+            mMessage.postValue(context.getString(R.string.prompt_mqtt_connection_error))
+        }
+
     }
 
     fun mqttSubscribe(topic: String, callback: MqttHelper.SubscriptionCallback) {

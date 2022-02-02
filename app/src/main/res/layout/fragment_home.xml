@@ -8,6 +8,9 @@
         <variable
             name="homeViewModel"
             type="com.maverick.iotsocket.ui.home.HomeViewModel" />
+        <variable
+            name="mainActivityViewModel"
+            type="com.maverick.iotsocket.ui.MainActivityViewModel" />
 
         <import type="android.view.View" />
     </data>
@@ -15,6 +18,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:ignore="PrivateResource"
         tools:context=".ui.home.HomeFragment">
 
         <ScrollView
@@ -329,6 +333,7 @@
                     android:layout_gravity="center"
                     android:layout_marginVertical="20dp"
                     android:minWidth="150dp"
+                    android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
                     android:text="@{homeViewModel.peripheral.relay ? @string/operation_relay_off : @string/operation_relay_on}"
                     android:textSize="20sp"
                     tools:ignore="SpeakableTextPresentCheck" />

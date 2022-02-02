@@ -16,7 +16,7 @@ import com.maverick.iotsocket.CommandAdapter
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentCommandsBinding
 import com.maverick.iotsocket.ui.MainActivityViewModel
-import com.maverick.iotsocket.utils.showToast
+import com.maverick.iotsocket.util.showToast
 
 
 class CommandsFragment : Fragment() {
@@ -36,6 +36,9 @@ class CommandsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCommandsBinding.inflate(inflater, container, false)
+
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.mainActivityViewModel = mainActivityViewModel
 
         initCommands()
         val commandListView = binding.commandListView
@@ -65,28 +68,28 @@ class CommandsFragment : Fragment() {
     }
 
     private fun initCommands() {
-        commandList.add(Command("开启电源", "relay 1"))
-        commandList.add(Command("关闭电源", "relay 0"))
-        commandList.add(Command("开启蜂鸣器", "beeper 1"))
-        commandList.add(Command("关闭蜂鸣器", "beeper 0"))
+        commandList.add(Command("开启电源", "relay true"))
+        commandList.add(Command("关闭电源", "relay false"))
+        commandList.add(Command("开启蜂鸣器", "beeper true"))
+        commandList.add(Command("关闭蜂鸣器", "beeper false"))
         commandList.add(Command("开启LED", "led 255"))
         commandList.add(Command("半开LED", "led 127"))
         commandList.add(Command("关闭LED", "led 0"))
         commandList.add(Command("电机正转", "motor 100"))
         commandList.add(Command("电机反转", "motor -100"))
         commandList.add(Command("电机停止", "motor 0"))
+        commandList.add(Command("红外发送预设0", "infrared send 0"))
+        commandList.add(Command("红外发送预设1", "infrared send 1"))
+        commandList.add(Command("红外发送预设2", "infrared send 2"))
+        commandList.add(Command("红外发送预设3", "infrared send 3"))
         commandList.add(Command("红外捕获到预设0", "infrared capture start 0"))
         commandList.add(Command("红外捕获到预设1", "infrared capture start 1"))
         commandList.add(Command("红外捕获到预设2", "infrared capture start 2"))
         commandList.add(Command("红外捕获到预设3", "infrared capture start 3"))
         commandList.add(Command("红外结束捕获", "infrared capture end"))
-        commandList.add(Command("红外发送预设0", "infrared send 0"))
-        commandList.add(Command("红外发送预设1", "infrared send 1"))
-        commandList.add(Command("红外发送预设2", "infrared send 2"))
-        commandList.add(Command("红外发送预设3", "infrared send 3"))
         commandList.add(Command("任务：映射亮度到电机输出", "task add \"handler motor brightness linear 0 100 -100 100\""))
         commandList.add(Command("清除所有任务", "task clear"))
-        commandList.add(Command("闹钟：每秒翻转一次开关", "alarm add \"*/1 * * * * *\" relay_flip 0"))
+        commandList.add(Command("闹钟：每秒翻转一次开关", "alarm add \"* * * * * *\" \"flip relay\" false"))
         commandList.add(Command("清除所有闹钟", "alarm clear"))
     }
 

@@ -1,4 +1,4 @@
-package com.maverick.iotsocket.utils
+package com.maverick.iotsocket.util
 
 import android.content.Context
 import android.widget.Toast

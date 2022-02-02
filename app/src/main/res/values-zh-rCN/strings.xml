@@ -2,8 +2,9 @@
 <resources>
     <string name="app_name">智能插座</string>
     <string name="title_home">概览</string>
-    <string name="title_control_center">控制中心</string>
+    <string name="title_alarms">闹钟</string>
     <string name="title_commands">指令</string>
+    <string name="title_tasks">任务</string>
     <string name="dialog_option_yes">是</string>
     <string name="prompt_confirm_sending">确认发送</string>
     <string name="prompt_blank_command">空的命令</string>
@@ -33,7 +34,7 @@
     <string name="text_on">打开</string>
     <string name="text_off">关闭</string>
     <string name="prompt_send_failed">发送失败</string>
-    <string name="text_alarm_setting">闹钟设置</string>
+    <string name="text_interval_alarm_setting">区间闹钟设置</string>
     <string name="text_periodic">周期</string>
     <string name="text_once">单次</string>
     <string name="prompt_choose_date">选择日期</string>
@@ -41,5 +42,13 @@
     <string name="prompt_start">开始</string>
     <string name="prompt_end">结束</string>
     <string name="text_set_alarm">设置闹钟</string>
-    <string name="text_reset">Reset</string>
+    <string name="text_reset">重置</string>
+    <string name="text_remove_alarms">清除闹钟</string>
+    <string name="text_remove_tasks">清除任务</string>
+    <string name="text_tick_alarm_setting">嘀嗒闹钟设置</string>
+    <string name="text_second_number">秒</string>
+    <string name="text_minute">分钟</string>
+    <string name="text_hour">小时</string>
+    <string name="text_tick_on_every_xth">在第X秒\n翻转</string>
+    <string name="prompt_error_empty_command">错误：空指令</string>
 </resources>

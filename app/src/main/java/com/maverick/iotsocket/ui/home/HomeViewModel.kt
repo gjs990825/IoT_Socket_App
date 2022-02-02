@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maverick.iotsocket.MqttHelper
-import com.maverick.iotsocket.model.IoTScoket
+import com.maverick.iotsocket.model.IoTSocket
 import com.maverick.iotsocket.model.Peripheral
 import com.maverick.iotsocket.model.Sensor
 import com.maverick.iotsocket.model.SystemInfo
@@ -13,7 +13,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 
-class HomeViewModel(ioTSocket: IoTScoket?) : ViewModel() {
+class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private val TAG = "HomeViewModel"
     private val mPeripheral = MutableLiveData<Peripheral>()
     private val mSensor = MutableLiveData<Sensor>()
@@ -39,7 +39,7 @@ class HomeViewModel(ioTSocket: IoTScoket?) : ViewModel() {
                     mPeripheral.postValue(
                         Peripheral(
                             getBoolean("relay"),
-                            getInt("led"),
+                            getBoolean("led"),
                             getBoolean("beeper"),
                             getInt("motor")
                         )

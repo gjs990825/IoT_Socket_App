@@ -8,8 +8,13 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_control_center_black_24dp"
-        android:title="@string/title_control_center" />
+        android:icon="@drawable/ic_alarm"
+        android:title="@string/title_alarms" />
+
+    <item
+        android:id="@+id/navigation_tasks"
+        android:icon="@drawable/ic_task"
+        android:title="@string/title_tasks" />
 
     <item
         android:id="@+id/navigation_notifications"

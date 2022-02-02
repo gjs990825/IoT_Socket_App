@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@id/navigation_home">
 
     <fragment
         android:id="@+id/navigation_home"
@@ -13,13 +13,20 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.maverick.iotsocket.ui.controlcenter.ControlCenterFragment"
-        android:label="@string/title_control_center"
-        tools:layout="@layout/fragment_control_center" />
+        android:name="com.maverick.iotsocket.ui.alarms.AlarmsFragment"
+        android:label="@string/title_alarms"
+        tools:layout="@layout/fragment_alarms" />
+
+    <fragment
+        android:id="@+id/navigation_tasks"
+        android:name="com.maverick.iotsocket.ui.tasks.TasksFragment"
+        android:label="@string/title_tasks"
+        tools:layout="@layout/fragment_tasks" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.maverick.iotsocket.ui.commands.CommandsFragment"
         android:label="@string/title_commands"
         tools:layout="@layout/fragment_commands" />
+
 </navigation>

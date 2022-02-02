@@ -54,4 +54,13 @@
     <string name="text_hour">Hour</string>
     <string name="text_tick_on_every_xth">Tick On\nEvery Xth</string>
     <string name="prompt_error_empty_command">Error: Empty command</string>
+    <string name="text_basic_task">Basic Task</string>
+    <string name="text_temperature_abbr">Temp</string>
+    <string name="text_higher">Higher</string>
+    <string name="text_lower">Lower</string>
+    <string name="text_set_task">Set Task</string>
+    <string name="placeholder_basic_task_1">If</string>
+    <string name="placeholder_basic_task_2">Is</string>
+    <string name="placeholder_basic_task_3">Than</string>
+    <string name="placeholder_basic_task_4">, Relay ON</string>
 </resources>

@@ -84,12 +84,6 @@ class AlarmsFragment : Fragment() {
                 alarmsViewModel!!.resetAlarmInput()
             }
         }
-        binding.floatingActionButtonRemoveAlarms.setOnClickListener {
-            mainActivityViewModel.mqttSendCommand("alarm clear")
-        }
-        binding.floatingActionButtonRemoveTasks.setOnClickListener {
-            mainActivityViewModel.mqttSendCommand("task clear")
-        }
 
         binding.radioGroupAlarmType.setOnCheckedChangeListener { _, checkedId ->
             Log.i(TAG, "radio onCheckedChange")

@@ -51,4 +51,13 @@
     <string name="text_hour">小时</string>
     <string name="text_tick_on_every_xth">在第X秒\n翻转</string>
     <string name="prompt_error_empty_command">错误：空指令</string>
+    <string name="text_basic_task">基本任务</string>
+    <string name="text_temperature_abbr">@string/text_temperature</string>
+    <string name="text_higher">高于</string>
+    <string name="text_lower">低于</string>
+    <string name="text_set_task">设定任务</string>
+    <string name="placeholder_basic_task_1">当</string>
+    <string name="placeholder_basic_task_2">" "</string>
+    <string name="placeholder_basic_task_3">"设定值"</string>
+    <string name="placeholder_basic_task_4">时，继电器打开</string>
 </resources>

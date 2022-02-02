@@ -1,26 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="message_codes">
-        <item>                         </item>
-        <item>参数个数错误    </item>
-        <item>命令参数不匹配   </item>
-        <item>Operation success        </item>
-        <item>Operation fail           </item>
-        <item>Invalid input            </item>
-        <item>Invalid action           </item>
-        <item>Invalid condition        </item>
-        <item>Reset Success            </item>
-        <item>命令不存在   </item>
-        <item>Infrared capture start   </item>
-        <item>Infrared capture success </item>
-        <item>Infrared capture fail    </item>
-        <item>Task add success         </item>
-        <item>Task add fail            </item>
-        <item>Task remove success      </item>
-        <item>Task remove fail         </item>
-        <item>Alarm add success        </item>
-        <item>Alarm add fail           </item>
-        <item>Alarm remove success     </item>
-        <item>Alarm remove fail        </item>
+        <item>""                              </item>
+        <item>"Argument number error"         </item>
+        <item>"Command flag not match"        </item>
+        <item>"Operation success"             </item>
+        <item>"Operation fail"                </item>
+        <item>"Invalid input"                 </item>
+        <item>"Invalid action"                </item>
+        <item>"Invalid condition"             </item>
+        <item>"Reset Success"                 </item>
+        <item>"Command does not exist"        </item>
+        <item>"Infrared capture start"        </item>
+        <item>"Infrared capture success"      </item>
+        <item>"Infrared capture fail"         </item>
+        <item>"Task add success"              </item>
+        <item>"Task add fail"                 </item>
+        <item>"Task duplicated"               </item>
+        <item>"Task type invalid"             </item>
+        <item>"Task remove success"           </item>
+        <item>"Task remove fail"              </item>
+        <item>"Alarm add success"             </item>
+        <item>"Alarm add fail"                </item>
+        <item>"Alarm remove success"          </item>
+        <item>"Alarm remove fail"             </item>
+        <item>"WiFi setting update success"   </item>
+        <item>"WiFi setting update fail"      </item>
+        <item>"TIME setting update success"   </item>
+        <item>"TIME setting update fail"      </item>
     </string-array>
 </resources>

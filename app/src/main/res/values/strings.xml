@@ -60,7 +60,17 @@
     <string name="text_lower">Lower</string>
     <string name="text_set_task">Set Task</string>
     <string name="placeholder_basic_task_1">If</string>
-    <string name="placeholder_basic_task_2">Is</string>
-    <string name="placeholder_basic_task_3">Than</string>
+    <string name="placeholder_basic_task_2">is</string>
+    <string name="placeholder_basic_task_3">than</string>
     <string name="placeholder_basic_task_4">, Relay ON</string>
+    <string name="text_mapping_task">Mapping Task</string>
+    <string name="placeholder_mapping_task_1">Map</string>
+    <string name="placeholder_mapping_task_2">value</string>
+    <string name="placeholder_mapping_task_3">From</string>
+    <string name="placeholder_mapping_task_4">To</string>
+    <string name="text_max_in">Max In</string>
+    <string name="text_min_in">Min In</string>
+    <string name="text_max_out">Max Out</string>
+    <string name="text_min_out">Min Out</string>
+    <string name="text_set_mapping_task">Set Mapping Task</string>
 </resources>

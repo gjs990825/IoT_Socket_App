@@ -1,7 +1,5 @@
 package com.maverick.iotsocket.ui.alarms
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -9,7 +7,6 @@ import com.maverick.iotsocket.R
 import com.maverick.iotsocket.model.AlarmsUIData
 import com.maverick.iotsocket.model.Date
 import com.maverick.iotsocket.model.Time
-import java.lang.StringBuilder
 
 class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
     private val TAG = "ControlCenterViewModel"
@@ -27,16 +24,11 @@ class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
     val tickAlarmValid = MutableLiveData(false)
 
     fun updateTickAlarmValid() {
-        Looper.myLooper()?.let {
-            Handler(it).postDelayed({
-                tickAlarmValid.postValue(
-                    with(getTickAlarmCheckedInput()) {
-                        Log.i(TAG, "tickAlarmBoolean call")
-                        this != null && this > 0
-                    }
-                )
-            }, 100)
-        }
+        tickAlarmValid.postValue(with(getTickAlarmCheckedInput()) { this != null && this > 0 })
+    }
+
+    fun updateTickAlarmValid(id: Int) {
+        tickAlarmValid.postValue(with(getTickAlarmCheckedInput(id)) { this != null && this > 0 })
     }
 
     init {
@@ -128,18 +120,21 @@ class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
         Pair(R.id.radioButtonEveryXthHour, 2),
     )
 
-    private fun getTickAlarmCheckedInput(): Int? {
+    private fun getTickAlarmCheckedInput(id: Int): Int? {
         return try {
-            when (tickAlarmCheckedId.value) {
+            when (id) {
                 R.id.radioButtonEveryXthSecond -> tickAlarmSecond.value?.toInt()
                 R.id.radioButtonEveryXthMinute -> tickAlarmMinute.value?.toInt()
                 R.id.radioButtonEveryXthHour -> tickAlarmHour.value?.toInt()
                 else -> null
             }
         } catch (e: NumberFormatException) {
-            e.printStackTrace()
             null
         }
+    }
+
+    private fun getTickAlarmCheckedInput(): Int? {
+        return with(tickAlarmCheckedId.value) { if (this != null) getTickAlarmCheckedInput(this) else null }
     }
 
     fun getTickAlarmCommand(): String {
@@ -149,7 +144,7 @@ class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
         return if (x != null && index != null && x > 0) {
             with(StringBuilder()) {
                 for (i in 0 until index) append("0 ")
-                append("*/").append(x).append(' ')
+                append("*/$x ")
                 for (i in index + 1 until 6) append("* ")
                 val cronString = toString().trimEnd()
                 "alarm add \"$cronString\" \"flip relay\" false"

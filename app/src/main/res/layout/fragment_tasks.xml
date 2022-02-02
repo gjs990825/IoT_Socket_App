@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,9 +17,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        tools:ignore="PrivateResource"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="PrivateResource">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floatingActionButtonRemoveTasks"
@@ -82,11 +82,12 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView7"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:layout_weight="1"
                                 android:text="@string/placeholder_basic_task_1"
+                                android:textAlignment="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -99,21 +100,22 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:layout_weight="1"
                                 android:checkedButton="@={tasksViewModel.basicTaskRadioGroupConditionCheckedId}"
                                 android:orientation="vertical">
-
-                                <RadioButton
-                                    android:id="@+id/radioButtonBasicTaskConditionTemperature"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/text_temperature_abbr"
-                                    android:textSize="20sp" />
 
                                 <RadioButton
                                     android:id="@+id/radioButtonBasicTaskConditionBrightness"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_brightness"
+                                    android:textSize="20sp" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButtonBasicTaskConditionTemperature"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_temperature_abbr"
                                     android:textSize="20sp" />
 
                                 <RadioButton
@@ -125,12 +127,12 @@
                             </RadioGroup>
 
                             <TextView
-                                android:id="@+id/textView8"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="10dp"
                                 android:text="@string/placeholder_basic_task_2"
+                                android:textAlignment="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -143,6 +145,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
+                                android:layout_weight="1"
                                 android:checkedButton="@={tasksViewModel.basicTaskRadioGroupTypeCheckedId}"
                                 android:orientation="vertical">
 
@@ -170,7 +173,6 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView9"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -182,15 +184,15 @@
                                 android:id="@+id/editTextNumberBasicTaskInput"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:inputType="numberSigned"
-                                android:minWidth="50dp"
-                                android:onTextChanged="@{() -> tasksViewModel.updateBasicTaskValid()}"
-                                android:text="@={tasksViewModel.basicTaskInput}"
+                                android:afterTextChanged="@{() -> tasksViewModel.updateBasicTaskValid()}"
                                 android:importantForAutofill="no"
-                                tools:ignore="LabelFor" />
+                                android:inputType="numberSigned|numberDecimal"
+                                android:minWidth="48dp"
+                                android:minHeight="48dp"
+                                android:text="@={tasksViewModel.basicTaskInput}"
+                                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
                             <TextView
-                                android:id="@+id/textView6"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -234,10 +236,192 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/text_tick_alarm_setting"
+                            android:layout_marginBottom="5dp"
+                            android:text="@string/text_mapping_task"
                             android:textColor="?android:attr/colorPrimary"
                             android:textSize="22sp"
                             android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:text="@string/placeholder_mapping_task_1"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                style="@style/DividerVertical"
+                                android:layout_margin="10dp" />
+
+                            <RadioGroup
+                                android:id="@+id/radioGroupMappingTaskCondition"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:checkedButton="@={tasksViewModel.mappingTaskRadioGroupConditionCheckedId}"
+                                android:orientation="vertical">
+
+                                <RadioButton
+                                    android:id="@+id/radioButtonMappingTaskConditionBrightness"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_brightness"
+                                    android:textSize="20sp" />
+
+                                <RadioButton
+                                    android:id="@+id/radioButtonMappingTaskConditionTemperature"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_temperature_abbr"
+                                    android:textSize="20sp" />
+
+
+                                <RadioButton
+                                    android:id="@+id/radioButtonMappingTaskConditionPressure"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/text_pressure"
+                                    android:textSize="20sp" />
+                            </RadioGroup>
+
+                            <View
+                                style="@style/DividerVertical"
+                                android:layout_margin="10dp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:text="@string/placeholder_mapping_task_2"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:text="@string/placeholder_mapping_task_3"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                android:id="@+id/view"
+                                style="@style/DividerVertical"
+                                android:layout_height="match_parent"
+                                android:layout_margin="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/editTextNumberMappingTaskMaxIn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> tasksViewModel.updateMappingTaskValid()}"
+                                    android:hint="@string/text_max_in"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberSigned|number|numberDecimal"
+                                    android:minWidth="50dp"
+                                    android:minHeight="48dp"
+                                    android:text="@={tasksViewModel.mappingTaskMaxIn}" />
+
+                                <EditText
+                                    android:id="@+id/editTextNumberMappingTaskMinIn"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> tasksViewModel.updateMappingTaskValid()}"
+                                    android:hint="@string/text_min_in"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberSigned|number|numberDecimal"
+                                    android:minWidth="50dp"
+                                    android:minHeight="48dp"
+                                    android:text="@={tasksViewModel.mappingTaskMinIn}" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_weight="1"
+                                android:text="@string/placeholder_mapping_task_4"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <View
+                                style="@style/DividerVertical"
+                                android:layout_margin="10dp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/editTextNumberMappingTaskMaxOut"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> tasksViewModel.updateMappingTaskValid()}"
+                                    android:hint="@string/text_max_out"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberSigned|number|numberDecimal"
+                                    android:minWidth="50dp"
+                                    android:minHeight="48dp"
+                                    android:text="@={tasksViewModel.mappingTaskMaxOut}" />
+
+                                <EditText
+                                    android:id="@+id/editTextNumberMappingTaskMinOut"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> tasksViewModel.updateMappingTaskValid()}"
+                                    android:hint="@string/text_min_out"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberSigned|number|numberDecimal"
+                                    android:minWidth="50dp"
+                                    android:minHeight="48dp"
+                                    android:text="@={tasksViewModel.mappingTaskMinOut}" />
+                            </LinearLayout>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <Button
+                            android:id="@+id/buttonSetMappingTask"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:enabled="@{tasksViewModel.mappingTaskValid}"
+                            android:minHeight="55dp"
+                            android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(tasksViewModel.getMappingTaskCommand())}"
+                            android:text="@string/text_set_mapping_task" />
 
                     </LinearLayout>
 

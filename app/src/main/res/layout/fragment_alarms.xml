@@ -322,7 +322,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
                                 android:checkedButton="@={alarmsViewModel.tickAlarmCheckedId}"
-                                android:onCheckedChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}">
+                                android:onCheckedChanged="@{(_, id) -> alarmsViewModel.updateTickAlarmValid(id)}">
 
                                 <RadioButton
                                     android:id="@+id/radioButtonEveryXthSecond"
@@ -363,7 +363,7 @@
                                     android:importantForAutofill="no"
                                     android:inputType="numberDecimal"
                                     android:minHeight="48dp"
-                                    android:onTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
+                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
                                     android:text="@={alarmsViewModel.tickAlarmSecond}"
                                     android:textSize="20sp" />
 
@@ -376,7 +376,7 @@
                                     android:importantForAutofill="no"
                                     android:inputType="numberDecimal"
                                     android:minHeight="48dp"
-                                    android:onTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
+                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
                                     android:text="@={alarmsViewModel.tickAlarmMinute}"
                                     android:textSize="20sp" />
 
@@ -389,7 +389,7 @@
                                     android:importantForAutofill="no"
                                     android:inputType="numberDecimal"
                                     android:minHeight="48dp"
-                                    android:onTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
+                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
                                     android:text="@={alarmsViewModel.tickAlarmHour}"
                                     android:textSize="20sp" />
                             </LinearLayout>

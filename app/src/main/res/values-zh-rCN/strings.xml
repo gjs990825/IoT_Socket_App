@@ -7,10 +7,10 @@
     <string name="title_tasks">任务</string>
     <string name="dialog_option_yes">是</string>
     <string name="prompt_confirm_sending">确认发送</string>
-    <string name="prompt_blank_command">空的命令</string>
+    <string name="prompt_blank_command">空的指令</string>
     <string name="prompt_canceled">已取消</string>
     <string name="dialog_option_no">否</string>
-    <string name="prompt_command_sent">命令已发送</string>
+    <string name="prompt_command_sent">指令已发送</string>
     <string name="operation_relay_on">继电器闭合</string>
     <string name="operation_relay_off">继电器断开</string>
     <string name="prompt_input_command">输入指令</string>
@@ -60,4 +60,14 @@
     <string name="placeholder_basic_task_2">" "</string>
     <string name="placeholder_basic_task_3">"设定值"</string>
     <string name="placeholder_basic_task_4">时，继电器打开</string>
+    <string name="text_mapping_task">映射任务</string>
+    <string name="placeholder_mapping_task_1">映射</string>
+    <string name="placeholder_mapping_task_2">值</string>
+    <string name="placeholder_mapping_task_3">从</string>
+    <string name="placeholder_mapping_task_4">到</string>
+    <string name="text_max_in">最大输入</string>
+    <string name="text_min_in">最小输入</string>
+    <string name="text_max_out">最大输出</string>
+    <string name="text_min_out">最小输出</string>
+    <string name="text_set_mapping_task">设定映射任务</string>
 </resources>

@@ -67,11 +67,11 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun mqttSendCommand(command: String) {
-        if (!command.isBlank()) {
+        if (command.isNotBlank()) {
             mIsLoading.value = true
             MqttHelper.sendCommand(command, MqttResponseCallback())
         } else {
-            mMessage.postValue(context.getString(R.string.prompt_mqtt_connection_error))
+            mMessage.postValue(context.getString(R.string.prompt_blank_command))
         }
 
     }

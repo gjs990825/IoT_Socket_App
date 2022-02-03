@@ -3,6 +3,7 @@ package com.maverick.iotsocket.ui
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Menu
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
@@ -61,6 +62,11 @@ class MainActivity : AppCompatActivity() {
                 }, 2000)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.app_bar_menu, menu)
+        return true
     }
 
     override fun onStart() {

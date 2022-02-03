@@ -1,4 +1,4 @@
-package com.maverick.iotsocket
+package com.maverick.iotsocket.connection
 
 import android.os.Handler
 import android.os.Looper

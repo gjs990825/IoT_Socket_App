@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maverick.iotsocket.MessageCodeHelper
-import com.maverick.iotsocket.MqttHelper
+import com.maverick.iotsocket.connection.MqttHelper
 import com.maverick.iotsocket.MyApplication.Companion.context
 import com.maverick.iotsocket.R
 

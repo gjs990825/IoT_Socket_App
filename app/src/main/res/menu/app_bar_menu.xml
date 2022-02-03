@@ -10,7 +10,7 @@
         app:actionLayout="@layout/switch_item"
         app:showAsAction="always" />
     <item
-        android:id="@+id/app_bar_scan"
-        android:title="Scan"
+        android:id="@+id/appBarConnectBluetooth"
+        android:title="Connect BT"
         app:showAsAction="ifRoom|withText" />
 </menu>

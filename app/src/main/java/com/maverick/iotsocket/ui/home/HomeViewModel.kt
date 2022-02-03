@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.maverick.iotsocket.MqttHelper
+import com.maverick.iotsocket.connection.MqttHelper
 import com.maverick.iotsocket.model.IoTSocket
 import com.maverick.iotsocket.model.Peripheral
 import com.maverick.iotsocket.model.Sensor

@@ -1,9 +1,11 @@
 package com.maverick.iotsocket.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
@@ -66,6 +68,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.app_bar_menu, menu)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.appBarConnectBluetooth) {
+            startActivity(Intent(this, BluetoothConnectionActivity::class.java))
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStart() {

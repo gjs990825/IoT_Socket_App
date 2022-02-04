@@ -7,7 +7,8 @@ import com.hivemq.client.mqtt.mqtt5.Mqtt5AsyncClient
 import com.hivemq.client.mqtt.mqtt5.message.publish.Mqtt5Publish
 import java.util.function.Consumer
 
-class MqttConnection: Connection() {
+class MqttConnection(connection: Connection?): Connection(connection) {
+    constructor(): this(null)
     private val TAG = "MqttConnection"
 
     private val host = "120.24.84.40"
@@ -23,6 +24,7 @@ class MqttConnection: Connection() {
     
     init {
         timeout = 2500
+        // TODO restore subscriptions
     }
 
     inner class MqttSubscriptionsCallback : Consumer<Mqtt5Publish> {

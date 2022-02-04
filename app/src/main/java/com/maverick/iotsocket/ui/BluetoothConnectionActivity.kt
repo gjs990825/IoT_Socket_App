@@ -23,6 +23,7 @@ import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothService
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothStatus
 import com.maverick.iotsocket.DeviceItemAdapter
 import com.maverick.iotsocket.R
+import com.maverick.iotsocket.connection.ConnectionManager
 import com.maverick.iotsocket.util.showToast
 import java.util.*
 
@@ -79,6 +80,11 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
     override fun onResume() {
         super.onResume()
         mService!!.setOnEventCallback(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mService!!.setOnEventCallback(null)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -163,8 +169,6 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
         if (status == BluetoothStatus.CONNECTED) {
             "Connected".showToast(this)
             finish()
-        } else {
-            "Something wrong".showToast(this)
         }
     }
 
@@ -182,24 +186,30 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
 
     override fun onItemClick(device: BluetoothDeviceDecorator?, position: Int) {
         if (device != null) {
-            mService!!.connect(device.device)
+//            mService!!.connect(device.device)
+            ConnectionManager.changeBluetoothDevice(device.device)
+            Log.i(TAG, "new bluetooth connection")
+            device.name
+            "${device.name} added".showToast(this)
+            finish()
         }
     }
 
-    private var requestBluetooth =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            Log.i(TAG, "bt req $result")
-            if (result.resultCode == AppCompatActivity.RESULT_OK) {
-                //granted
-            } else {
-                //deny
-            }
-        }
-
-    private val requestMultiplePermissions =
-        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-            permissions.entries.forEach {
-                Log.d("test006", "${it.key} = ${it.value}")
-            }
-        }
+    // TODO bluetooth permission request
+//    private var requestBluetooth =
+//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+//            Log.i(TAG, "bt req $result")
+//            if (result.resultCode == RESULT_OK) {
+//                //granted
+//            } else {
+//                //deny
+//            }
+//        }
+//
+//    private val requestMultiplePermissions =
+//        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+//            permissions.entries.forEach {
+//                Log.d("test006", "${it.key} = ${it.value}")
+//            }
+//        }
 }

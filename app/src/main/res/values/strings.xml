@@ -32,7 +32,7 @@
     <string name="text_on">ON</string>
     <string name="text_off">OFF</string>
     <string name="prompt_ack_timeout">Ack Timeout</string>
-    <string name="prompt_mqtt_connection_error">MQTT Connection Error!</string>
+    <string name="prompt_connection_error">Connection Error!</string>
     <string name="text_not_a_number" translatable="false">NaN</string>
     <string name="prompt_send_failed">Send Failed</string>
     <string name="text_interval_alarm_setting">Interval Alarm Setting</string>
@@ -76,4 +76,7 @@
     <string name="text_bluetooth_sample_name" translatable="false">MTP-II</string>
     <string name="text_bluetooth_sample_mac" translatable="false">00:11:22:33:44:55</string>
     <string name="text_bluetooth_sample_rssi" translatable="false">-55</string>
+    <string name="text_select_bluetooth_device">Select BT Device</string>
+    <string name="text_use_bluetooth_connection">Use Bluetooth</string>
+    <string name="text_use_mqtt_connection">Use MQTT</string>
 </resources>

@@ -3,6 +3,8 @@ package com.maverick.iotsocket.connection
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import org.json.JSONException
 import org.json.JSONObject
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -31,18 +33,19 @@ interface OnBusyStateChanged {
 }
 
 abstract class Connection() {
-    constructor(connection: Connection) : this() {
-        this.subscribeCallbackMap = connection.subscribeCallbackMap
-        this.connect(null)
-        this.timeout = connection.timeout
-        this.onBusyStateChanged = connection.onBusyStateChanged
-        connection.disconnect()
+    constructor(connection: Connection?) : this() {
+        if (connection != null) {
+            subscribeCallbackMap = connection.subscribeCallbackMap
+            subscribeCallbackMap.remove(topicAck)
+            onBusyStateChanged = connection.onBusyStateChanged
+        }
     }
 
     private val TAG = "Connection"
     protected val topicAck = "IoT_Socket/Ack"
+    protected val topicState = "IoT_Socket/State"
     private val topicCommand = "IoT_Socket/Command"
-    private var subscribeCallbackMap = HashMap<String, Set<SubscriptionCallback>>()
+    protected var subscribeCallbackMap = HashMap<String, Set<SubscriptionCallback>>()
     private val ackHandlerQueue = ConcurrentLinkedQueue<Pair<ResponseCallback, Long>>()
     protected val ackSubscriptionCallback = AckSubscriptionCallback()
     fun isBusy(): Boolean = isBusy
@@ -140,6 +143,7 @@ abstract class Connection() {
     // Incoming message goes here
     fun onIncomingMessage(message: String, topic: String) {
         val callback = subscribeCallbackMap[topic]
+        Log.w(TAG, "topic:$topic has ${callback?.size} callbacks")
         callback?.forEach {
             it.onMessage(message)
         } ?: Log.w(TAG, "unknown topic:$topic, message:$message")

@@ -13,7 +13,7 @@ class MainActivityViewModel : ViewModel() {
     private val TAG = "MainViewModel"
     private val mIsLoading = MutableLiveData(false)
     private var mMessage = MutableLiveData<String>()
-    private val connection = ConnectionManager.getConnection()
+    private var connection = ConnectionManager.getConnection()
     private val busyStateHelper = BusyStateHelper()
 
     init {
@@ -32,9 +32,9 @@ class MainActivityViewModel : ViewModel() {
 
     inner class ConnectResultCallback : OperationResultCallback {
         override fun onResult(operationStatus: OperationStatus) {
-            Log.i(TAG, "mqtt connect callback: $operationStatus")
+            Log.i(TAG, "connect callback: $operationStatus")
             if (operationStatus == OperationStatus.FAIL){
-                mMessage.postValue(context.getString(R.string.prompt_mqtt_connection_error))
+                mMessage.postValue(context.getString(R.string.prompt_connection_error))
             }
         }
     }
@@ -70,4 +70,25 @@ class MainActivityViewModel : ViewModel() {
     fun sendCommand(command: String) {
         connection.sendCommand(command, CommandResponseCallback())
     }
+
+    fun switchBT() {
+        connection.disconnect()
+        if (ConnectionManager.switchToBluetooth()) {
+            connection = ConnectionManager.getConnection()
+            connect()
+        }
+    }
+
+    fun switchMqtt() {
+        connection.disconnect()
+        ConnectionManager.switchToMqtt()
+        connection = ConnectionManager.getConnection()
+        connect()
+    }
+
+//    fun switchConnection() {
+//        connection.disconnect()
+//        connection = ConnectionManager.getConnection()
+//        connect()
+//    }
 }

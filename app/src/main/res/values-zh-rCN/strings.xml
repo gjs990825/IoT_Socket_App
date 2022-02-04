@@ -30,7 +30,7 @@
     <string name="text_offline">离线</string>
     <string name="text_online">在线</string>
     <string name="prompt_ack_timeout">应答超时</string>
-    <string name="prompt_mqtt_connection_error">MQTT连接错误</string>
+    <string name="prompt_connection_error">连接错误</string>
     <string name="text_on">打开</string>
     <string name="text_off">关闭</string>
     <string name="prompt_send_failed">发送失败</string>
@@ -70,4 +70,7 @@
     <string name="text_max_out">最大输出</string>
     <string name="text_min_out">最小输出</string>
     <string name="text_set_mapping_task">设定映射任务</string>
+    <string name="text_select_bluetooth_device">选择蓝牙设备</string>
+    <string name="text_use_bluetooth_connection">使用蓝牙连接</string>
+    <string name="text_use_mqtt_connection">使用MQTT连接</string>
 </resources>

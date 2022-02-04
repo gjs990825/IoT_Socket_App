@@ -82,11 +82,14 @@ class HomeFragment : Fragment() {
             }
         }
 
+
+
         return root
     }
 
     override fun onStart() {
         super.onStart()
+        Log.w(TAG, "onStart: ")
         homeViewModel.subscribeTopicState()
     }
 

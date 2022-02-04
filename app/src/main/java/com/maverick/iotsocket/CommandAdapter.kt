@@ -5,13 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.maverick.iotsocket.util.showToast
+
 
 interface CommandOnClickListener {
     fun onClick(command: Command)
 }
 
-class CommandAdapter(private val commandList: List<Command>, private val onClickListener: CommandOnClickListener) :
+class CommandAdapter(
+    private val commandList: List<Command>,
+    private val onClickListener: CommandOnClickListener
+) :
     RecyclerView.Adapter<CommandAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val commandName: TextView = view.findViewById(R.id.commandName)

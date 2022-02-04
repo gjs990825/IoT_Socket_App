@@ -73,4 +73,7 @@
     <string name="text_max_out">Max Out</string>
     <string name="text_min_out">Min Out</string>
     <string name="text_set_mapping_task">Set Mapping Task</string>
+    <string name="text_bluetooth_sample_name" translatable="false">MTP-II</string>
+    <string name="text_bluetooth_sample_mac" translatable="false">00:11:22:33:44:55</string>
+    <string name="text_bluetooth_sample_rssi" translatable="false">-55</string>
 </resources>

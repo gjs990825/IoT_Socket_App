@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.maverick.iotsocket.connection.MqttHelper
+import com.maverick.iotsocket.connection.ConnectionManager
+import com.maverick.iotsocket.connection.SubscriptionCallback
 import com.maverick.iotsocket.model.IoTSocket
 import com.maverick.iotsocket.model.Peripheral
 import com.maverick.iotsocket.model.Sensor
@@ -18,7 +19,8 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private val mPeripheral = MutableLiveData<Peripheral>()
     private val mSensor = MutableLiveData<Sensor>()
     private val mSystemInfo = MutableLiveData<SystemInfo>()
-    private val mqttTopicStateCallback = MqttTopicStateCallback()
+    private val connection = ConnectionManager.getConnection()
+    private val topicStateCallback = TopicStateCallback()
 
     init {
         ioTSocket?.let {
@@ -69,17 +71,17 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
         }
     }
 
-    private inner class MqttTopicStateCallback : MqttHelper.SubscriptionCallback {
+    private inner class TopicStateCallback : SubscriptionCallback {
         override fun onMessage(message: String) {
             parseStateMessage(message)
         }
     }
 
-    fun mqttSubscribeTopicState() {
-        MqttHelper.subscribeTopic(MqttHelper.topicState, mqttTopicStateCallback)
+    fun subscribeTopicState() {
+        connection.subscribeTopic(ConnectionManager.TOPIC_STATE, topicStateCallback)
     }
 
-    fun mqttUnsubscribeTopicState() {
-        MqttHelper.unsubscribeTopic(MqttHelper.topicState, mqttTopicStateCallback)
+    fun unsubscribeTopicState() {
+        connection.unsubscribeTopic(ConnectionManager.TOPIC_STATE, topicStateCallback)
     }
 }

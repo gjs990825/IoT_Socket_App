@@ -29,7 +29,7 @@
             android:clickable="true"
             android:contentDescription="@string/text_remove_tasks"
             android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
-            android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(`task clear`)}"
+            android:onClick="@{() -> mainActivityViewModel.sendCommand(`task clear`)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_remove_tasks" />
@@ -208,7 +208,7 @@
                             android:layout_marginTop="10dp"
                             android:enabled="@{tasksViewModel.basicTaskValid}"
                             android:minHeight="55dp"
-                            android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(tasksViewModel.getBasicTaskCommand())}"
+                            android:onClick="@{() -> mainActivityViewModel.sendCommand(tasksViewModel.getBasicTaskCommand())}"
                             android:text="@string/text_set_task" />
 
                     </LinearLayout>
@@ -420,7 +420,7 @@
                             android:layout_marginTop="5dp"
                             android:enabled="@{tasksViewModel.mappingTaskValid}"
                             android:minHeight="55dp"
-                            android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(tasksViewModel.getMappingTaskCommand())}"
+                            android:onClick="@{() -> mainActivityViewModel.sendCommand(tasksViewModel.getMappingTaskCommand())}"
                             android:text="@string/text_set_mapping_task" />
 
                     </LinearLayout>

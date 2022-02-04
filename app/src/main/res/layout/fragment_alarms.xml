@@ -30,7 +30,7 @@
             android:clickable="true"
             android:contentDescription="@string/text_remove_alarms"
             android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
-            android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(`alarm clear`)}"
+            android:onClick="@{() -> mainActivityViewModel.sendCommand(`alarm clear`)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_alarm_off" />
@@ -255,7 +255,7 @@
                                 android:layout_gravity="center"
                                 android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
                                 android:minHeight="55dp"
-                                android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(alarmsViewModel.getIntervalAlarmCommand())}"
+                                android:onClick="@{() -> mainActivityViewModel.sendCommand(alarmsViewModel.getIntervalAlarmCommand())}"
                                 android:text="@string/text_set_alarm"
                                 tools:ignore="ButtonStyle" />
                         </LinearLayout>
@@ -420,7 +420,7 @@
                                 android:layout_gravity="center"
                                 android:enabled="@{alarmsViewModel.tickAlarmValid}"
                                 android:minHeight="55dp"
-                                android:onClick="@{() -> mainActivityViewModel.mqttSendCommand(alarmsViewModel.getTickAlarmCommand())}"
+                                android:onClick="@{() -> mainActivityViewModel.sendCommand(alarmsViewModel.getTickAlarmCommand())}"
                                 android:text="@string/text_set_alarm"
                                 tools:ignore="ButtonStyle" />
                         </LinearLayout>

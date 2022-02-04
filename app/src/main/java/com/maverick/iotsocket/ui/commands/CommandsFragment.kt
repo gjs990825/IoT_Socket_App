@@ -11,15 +11,16 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.maverick.iotsocket.Command
 import com.maverick.iotsocket.CommandAdapter
+import com.maverick.iotsocket.CommandOnClickListener
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentCommandsBinding
 import com.maverick.iotsocket.ui.MainActivityViewModel
 import com.maverick.iotsocket.util.showToast
 
-
-class CommandsFragment : Fragment() {
+class CommandsFragment : Fragment(), CommandOnClickListener {
     private val TAG = "NotificationsFragment"
     private val commandList = ArrayList<Command>()
     private val mainActivityViewModel by lazy { ViewModelProvider(requireActivity())[MainActivityViewModel::class.java] }
@@ -41,16 +42,9 @@ class CommandsFragment : Fragment() {
         binding.mainActivityViewModel = mainActivityViewModel
 
         initCommands()
-        val commandListView = binding.commandListView
-        commandListView.adapter =
-            CommandAdapter(requireActivity(), R.layout.command_item, commandList)
-        commandListView.setOnItemClickListener { _, _, position, _ ->
-            val command = commandList[position]
-            "\"${command.commandName}\" ${getString(R.string.prompt_command_sent)}".showToast(
-                requireContext()
-            )
-            mainActivityViewModel.mqttSendCommand(command.commandContent)
-        }
+
+        binding.commandListView.layoutManager = LinearLayoutManager(requireContext())
+        binding.commandListView.adapter = CommandAdapter(commandList, this)
 
         binding.outlinedTextField.editText?.setOnEditorActionListener(InputActionListener())
 
@@ -87,7 +81,12 @@ class CommandsFragment : Fragment() {
         commandList.add(Command("红外捕获到预设2", "infrared capture start 2"))
         commandList.add(Command("红外捕获到预设3", "infrared capture start 3"))
         commandList.add(Command("红外结束捕获", "infrared capture end"))
-        commandList.add(Command("任务：映射亮度到电机输出", "task add \"handler motor brightness linear 0 100 -100 100\""))
+        commandList.add(
+            Command(
+                "任务：映射亮度到电机输出",
+                "task add \"handler motor brightness linear 0 100 -100 100\""
+            )
+        )
         commandList.add(Command("清除所有任务", "task clear"))
         commandList.add(Command("闹钟：每秒翻转一次开关", "alarm add \"* * * * * *\" \"flip relay\" false"))
         commandList.add(Command("清除所有闹钟", "alarm clear"))
@@ -108,7 +107,7 @@ class CommandsFragment : Fragment() {
                         it.setCancelable(true)
                         it.setIcon(android.R.drawable.ic_dialog_info)
                         it.setPositiveButton(getString(R.string.dialog_option_yes)) { dialog, _ ->
-                            mainActivityViewModel.mqttSendCommand(command)
+                            mainActivityViewModel.sendCommand(command)
                             text.clear()
                             R.string.prompt_command_sent.showToast(requireContext())
                             dialog.cancel()
@@ -120,7 +119,7 @@ class CommandsFragment : Fragment() {
                         it.create().show()
                     }
                 } else {
-                    mainActivityViewModel.mqttSendCommand(command)
+                    mainActivityViewModel.sendCommand(command)
                     text.clear()
                 }
             }
@@ -136,5 +135,11 @@ class CommandsFragment : Fragment() {
                 false
             }
         }
+    }
+
+    override fun onClick(command: Command) {
+        mainActivityViewModel.sendCommand(command.commandContent)
+        "\"${command.commandName}\" ${getString(R.string.prompt_command_sent)}"
+            .showToast(requireContext())
     }
 }

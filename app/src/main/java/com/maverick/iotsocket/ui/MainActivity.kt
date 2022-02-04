@@ -79,12 +79,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        mainActivityViewModel.mqttConnect()
+        mainActivityViewModel.connect()
     }
 
     override fun onStop() {
         super.onStop()
-        mainActivityViewModel.mqttDisconnect()
+        mainActivityViewModel.disconnect()
     }
 
     override fun onDestroy() {

@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         binding.mainActivityViewModel = mainActivityViewModel
 
         binding.buttonSwitchRelay.setOnClickListener {
-            mainActivityViewModel.mqttSendCommand("flip relay")
+            mainActivityViewModel.sendCommand("flip relay")
         }
 
         homeViewModel.peripheral.observe(requireActivity()) {
@@ -87,12 +87,12 @@ class HomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        homeViewModel.mqttSubscribeTopicState()
+        homeViewModel.subscribeTopicState()
     }
 
     override fun onStop() {
         super.onStop()
-        homeViewModel.mqttUnsubscribeTopicState()
+        homeViewModel.unsubscribeTopicState()
         var ioTSocket: IoTSocket? = null
         with(homeViewModel) {
             if (sensor.value != null && peripheral.value != null && systemInfo.value != null) {

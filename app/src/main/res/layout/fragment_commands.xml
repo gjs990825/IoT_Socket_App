@@ -58,7 +58,7 @@
 
         </LinearLayout>
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/commandListView"
             android:layout_width="0dp"
             android:layout_height="0dp"

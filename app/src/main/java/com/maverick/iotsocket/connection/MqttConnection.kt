@@ -21,10 +21,14 @@ class MqttConnection(connection: Connection?): Connection(connection) {
         .serverHost(host)
         .serverPort(1883)
         .buildAsync()
-    
+    private var subsList = ArrayList<String>()
+
     init {
-        timeout = 2500
-        // TODO restore subscriptions
+        // check old subs, re-subs mqtt topic later when connect
+        for (topic in subscribeCallbackMap.keys) {
+            subsList.add(topic)
+            Log.w(TAG, "topic: $topic copied")
+        }
     }
 
     inner class MqttSubscriptionsCallback : Consumer<Mqtt5Publish> {
@@ -36,8 +40,9 @@ class MqttConnection(connection: Connection?): Connection(connection) {
             }
         }
     }
-    
+
     override fun connect(callback: OperationResultCallback?) {
+        isBusy = true
         client.connectWith()
             .simpleAuth()
             .username(userName)
@@ -51,6 +56,14 @@ class MqttConnection(connection: Connection?): Connection(connection) {
                 } else {
                     Log.i(TAG, "connect success")
                     subscribeTopic(topicAck, ackSubscriptionCallback)
+
+                    // re-subs and clear
+                    if (subsList.isNotEmpty()) {
+                        for (topic in subsList) {
+                            subscribe(topic)
+                        }
+                        subsList.clear()
+                    }
                 }
 
                 val status = if (throwable == null) {
@@ -59,12 +72,17 @@ class MqttConnection(connection: Connection?): Connection(connection) {
                     OperationStatus.FAIL
                 }
                 callback?.onResult(status)
+                isBusy = false
             }
     }
 
     override fun disconnect() {
         client.disconnect()
         Log.i(TAG, "disconnect")
+    }
+
+    override fun reconnect(callback: OperationResultCallback?) {
+        connect(callback)
     }
 
     override fun send(topic: String, content: String, callback: ResponseCallback) {

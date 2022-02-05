@@ -79,4 +79,6 @@
     <string name="text_select_bluetooth_device">Select BT Device</string>
     <string name="text_use_bluetooth_connection">Use Bluetooth</string>
     <string name="text_use_mqtt_connection">Use MQTT</string>
+    <string name="prompt_please_select_a_bluetooth_device_first">Please Select a Bluetooth Device First!</string>
+    <string name="text_long_sample" translatable="false">This is a sample of long text, blah blah blah blah...</string>
 </resources>

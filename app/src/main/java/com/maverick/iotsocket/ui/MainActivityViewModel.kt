@@ -72,10 +72,14 @@ class MainActivityViewModel : ViewModel() {
     }
 
     fun switchBT() {
-        connection.disconnect()
-        if (ConnectionManager.switchToBluetooth()) {
-            connection = ConnectionManager.getConnection()
-            connect()
+        if (ConnectionManager.bluetoothConnectionAvailable()) {
+            connection.disconnect()
+            if (ConnectionManager.switchToBluetooth()) {
+                connection = ConnectionManager.getConnection()
+                connect()
+            }
+        } else {
+            mMessage.postValue(context.getString(R.string.prompt_please_select_a_bluetooth_device_first))
         }
     }
 

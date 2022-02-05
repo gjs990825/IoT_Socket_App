@@ -189,7 +189,7 @@
                                 android:inputType="numberSigned|numberDecimal"
                                 android:minWidth="48dp"
                                 android:minHeight="48dp"
-                                android:text="@={tasksViewModel.basicTaskInput}"
+                                android:text="@={tasksViewModel.basicTaskUserInput}"
                                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
                             <TextView

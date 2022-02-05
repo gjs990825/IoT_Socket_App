@@ -48,12 +48,11 @@ abstract class Connection() {
     protected var subscribeCallbackMap = HashMap<String, Set<SubscriptionCallback>>()
     private val ackHandlerQueue = ConcurrentLinkedQueue<Pair<ResponseCallback, Long>>()
     protected val ackSubscriptionCallback = AckSubscriptionCallback()
-    fun isBusy(): Boolean = isBusy
-    var timeout = 2000L
+    var timeout = 2000L // default ack timeout
     var onBusyStateChanged: OnBusyStateChanged? = null
 
 
-    private var isBusy = false
+    protected var isBusy = false
         set(value) {
             field = value
             onBusyStateChanged?.onBusyStateChanged(field)
@@ -103,6 +102,7 @@ abstract class Connection() {
 
     abstract fun connect(callback: OperationResultCallback?)
     abstract fun disconnect()
+    abstract fun reconnect(callback: OperationResultCallback?)
 
     private fun isAckQueueEmpty() = ackHandlerQueue.isEmpty()
 
@@ -117,7 +117,8 @@ abstract class Connection() {
         Looper.myLooper()?.let {
             Handler(it).postDelayed({
                 ackHandlerQueueRemoveTimeout()
-            }, timeout)
+            }, timeout + 100)
+            // ensure call after timeout
         }
     }
 
@@ -143,7 +144,7 @@ abstract class Connection() {
     // Incoming message goes here
     fun onIncomingMessage(message: String, topic: String) {
         val callback = subscribeCallbackMap[topic]
-        Log.w(TAG, "topic:$topic has ${callback?.size} callbacks")
+        Log.d(TAG, "topic:$topic has ${callback?.size} callbacks")
         callback?.forEach {
             it.onMessage(message)
         } ?: Log.w(TAG, "unknown topic:$topic, message:$message")

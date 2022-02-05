@@ -73,4 +73,5 @@
     <string name="text_select_bluetooth_device">选择蓝牙设备</string>
     <string name="text_use_bluetooth_connection">使用蓝牙连接</string>
     <string name="text_use_mqtt_connection">使用MQTT连接</string>
+    <string name="prompt_please_select_a_bluetooth_device_first">请先选择一个蓝牙设备</string>
 </resources>

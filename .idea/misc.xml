@@ -7,6 +7,7 @@
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.265625" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable-v24/task_alt_24px.xml" value="0.145" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable-v24/vd_vector.xml" value="0.2515" />
+        <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable/ic_add_circle.xml" value="0.213" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable/ic_alarm.xml" value="0.2" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable/ic_alarm_off.xml" value="0.2075" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/drawable/ic_commands_black_24dp.xml" value="0.2" />
@@ -40,7 +41,7 @@
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/layout/info_item.xml" value="0.4" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/layout/switch_item.xml" value="0.20478837109876016" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/layout/test_layout.xml" value="0.264" />
-        <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/menu/app_bar_menu.xml" value="0.20478837109876016" />
+        <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/menu/app_bar_menu.xml" value="0.4" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/menu/bluetooth_connection_menu.xml" value="0.2" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/menu/bottom_nav_menu.xml" value="0.24947916666666667" />
         <entry key="..\:/Workbench/Android_Repos/IoT_Socket_App/app/src/main/res/menu/top_app_bar.xml" value="0.1" />

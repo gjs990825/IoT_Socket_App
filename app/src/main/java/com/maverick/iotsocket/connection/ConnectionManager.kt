@@ -1,5 +1,6 @@
 package com.maverick.iotsocket.connection
 
+import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 
 object ConnectionManager {
@@ -14,6 +15,8 @@ object ConnectionManager {
     fun changeBluetoothDevice(bluetoothDevice: BluetoothDevice) {
         this.bluetoothDevice = bluetoothDevice
     }
+
+    fun bluetoothConnectionAvailable() = bluetoothDevice != null
 
     fun switchToBluetooth(): Boolean {
         return if (bluetoothDevice != null) {

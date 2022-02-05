@@ -18,7 +18,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
     private val writer = BluetoothWriter(service)
 
     init {
-        for (topic in super.subscribeCallbackMap.keys) {
+        for (topic in subscribeCallbackMap.keys) {
             subsList.add(topic)
             Log.w(TAG, "topic: $topic copied")
         }
@@ -26,6 +26,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
     }
 
     override fun connect(callback: OperationResultCallback?) {
+        isBusy = true
         service.setOnEventCallback(this)
         service.connect(bluetoothDevice)
         operationResultCallback = callback
@@ -35,6 +36,9 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
                 if (!isAvailable()) {
                     callback?.onResult(OperationStatus.FAIL)
                 }
+                if (isBusy) {
+                    isBusy = false
+                }
             }, 3000)
         }
     }
@@ -42,6 +46,10 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
     override fun disconnect() {
         service.disconnect()
 //        service.setOnEventCallback(null)
+    }
+
+    override fun reconnect(callback: OperationResultCallback?) {
+        connect(callback)
     }
 
     override fun send(topic: String, content: String, callback: ResponseCallback) {
@@ -66,7 +74,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
         if (buffer != null && length > 0) {
             val rawMessage = String(buffer, 0, length)
 
-            Log.d(TAG, "onDataRead: $rawMessage")
+            Log.v(TAG, "onDataRead: $rawMessage")
             val topic = when {
                 rawMessage.startsWith(topicAck, false) -> topicAck
                 rawMessage.startsWith(topicState, false) -> topicState
@@ -76,7 +84,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
             if (subsList.contains(topic)) {
                 onIncomingMessage(message, topic)
             } else {
-                Log.w(TAG, "unsubscribed topic:$topic, message dropped:$message")
+                Log.w(TAG, "unsubscribed topic:$topic, message dropped")
             }
         }
     }
@@ -85,8 +93,10 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
         if (status != null) {
             Log.i(TAG, "onStatusChange: $status")
             when (status) {
-                BluetoothStatus.CONNECTED -> operationResultCallback?.onResult(OperationStatus.SUCCESS)
-
+                BluetoothStatus.CONNECTED -> {
+                    operationResultCallback?.onResult(OperationStatus.SUCCESS)
+                    isBusy = false
+                }
                 else -> {} // do nothing
             }
         }

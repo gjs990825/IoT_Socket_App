@@ -6,7 +6,6 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -14,7 +13,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -164,12 +163,6 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
 
     override fun onStatusChange(status: BluetoothStatus) {
         Log.d(TAG, "onStatusChange: $status")
-        Toast.makeText(this, status.toString(), Toast.LENGTH_SHORT).show()
-
-        if (status == BluetoothStatus.CONNECTED) {
-            "Connected".showToast(this)
-            finish()
-        }
     }
 
     override fun onDeviceName(deviceName: String) {
@@ -177,7 +170,7 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
     }
 
     override fun onToast(message: String) {
-        Log.d(TAG, "onToast:$message")
+        Log.w(TAG, "onToast:$message")
     }
 
     override fun onDataWrite(buffer: ByteArray) {
@@ -187,6 +180,7 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
     override fun onItemClick(device: BluetoothDeviceDecorator?, position: Int) {
         if (device != null) {
 //            mService!!.connect(device.device)
+            // TODO Store mac address rather than the device itself
             ConnectionManager.changeBluetoothDevice(device.device)
             Log.i(TAG, "new bluetooth connection")
             device.name

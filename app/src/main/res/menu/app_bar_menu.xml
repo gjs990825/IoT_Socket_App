@@ -4,21 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-<!--    <item-->
-<!--        android:id="@+id/app_bar_switch"-->
-<!--        android:title="Switch"-->
-<!--        app:actionLayout="@layout/switch_item"-->
-<!--        app:showAsAction="always" />-->
+    <!--    <item-->
+    <!--        android:id="@+id/app_bar_switch"-->
+    <!--        android:title="Switch"-->
+    <!--        app:actionLayout="@layout/switch_item"-->
+    <!--        app:showAsAction="always" />-->
     <item
         android:id="@+id/appBarConnectBluetooth"
+        android:icon="@drawable/ic_add_circle"
         android:title="@string/text_select_bluetooth_device"
-        app:showAsAction="withText" />
+        app:iconTint="?android:attr/colorControlNormal"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/appBarSwitchToBT"
+        android:icon="@drawable/ic_bluetooth"
         android:title="@string/text_use_bluetooth_connection"
-        app:showAsAction="withText" />
+        app:iconTint="?android:attr/colorControlNormal"
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/appBarSwitchToMQTT"
+        android:icon="@drawable/ic_cell_wifi"
         android:title="@string/text_use_mqtt_connection"
-        app:showAsAction="withText" />
+        app:iconTint="?android:attr/colorControlNormal"
+        app:showAsAction="ifRoom" />
 </menu>

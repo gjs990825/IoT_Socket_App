@@ -7,17 +7,17 @@ import com.maverick.iotsocket.R
 class TasksViewModel : ViewModel() {
     private val TAG = "TasksViewModel"
 
-    val basicTaskInput = MutableLiveData<String>()
+    val basicTaskUserInput = MutableLiveData<String>()
     val basicTaskRadioGroupConditionCheckedId =
         MutableLiveData(R.id.radioButtonBasicTaskConditionBrightness)
     val basicTaskRadioGroupTypeCheckedId = MutableLiveData(R.id.radioButtonBasicTaskTypeHigher)
     val basicTaskValid = MutableLiveData(false)
 
-    fun updateBasicTaskValid() = basicTaskValid.postValue(getBasicTaskInput() != null)
+    fun updateBasicTaskValid() = basicTaskValid.postValue(getBasicTaskUserInputValue() != null)
 
-    private fun getBasicTaskInput(): Float? {
+    private fun getBasicTaskUserInputValue(): Float? {
         return try {
-            basicTaskInput.value?.toFloat()
+            basicTaskUserInput.value?.toFloat()
         } catch (e: NumberFormatException) {
             null
         }
@@ -35,7 +35,7 @@ class TasksViewModel : ViewModel() {
             R.id.radioButtonBasicTaskTypeLower -> "lower "
             else -> null
         }
-        val inputValue = getBasicTaskInput()
+        val inputValue = getBasicTaskUserInputValue()
 
         return if (condition != null && type != null && inputValue != null) {
             StringBuilder("task add relay ")

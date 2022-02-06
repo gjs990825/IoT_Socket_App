@@ -57,8 +57,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"
-                    app:cardCornerRadius="20dp"
                     android:visibility="@{mainActivityViewModel.isUsingBluetoothConnection ? View.VISIBLE : View.GONE}"
+                    app:cardCornerRadius="20dp"
                     app:contentPadding="15dp"
                     tools:visibility="visible">
 
@@ -424,8 +424,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
+                                android:afterTextChanged="@{() -> homeViewModel.updateWifiSettingValid() }"
                                 android:inputType="text"
                                 android:minHeight="48dp"
+                                android:text="@={homeViewModel.wifiSSID}"
                                 tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
 
                         </LinearLayout>
@@ -448,19 +450,23 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
+                                android:afterTextChanged="@{() -> homeViewModel.updateWifiSettingValid() }"
                                 android:inputType="textPassword"
                                 android:minHeight="48dp"
+                                android:text="@={homeViewModel.wifiPassword}"
                                 tools:ignore="Autofill,LabelFor,SpeakableTextPresentCheck" />
 
                         </LinearLayout>
 
                         <Button
-                            android:id="@+id/button"
+                            android:id="@+id/buttonUpdateWifiSetting"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:layout_weight="3"
+                            android:enabled="@{homeViewModel.wifiSettingValid}"
                             android:minHeight="55dp"
+                            android:onClick="@{() -> mainActivityViewModel.sendCommand(homeViewModel.getWifiSettingCommand()) }"
                             android:text="@string/text_update_wifi_setting" />
                     </LinearLayout>
 
@@ -510,6 +516,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:layout_weight="2"
+                                android:onClick="@{() -> mainActivityViewModel.sendCommand(`settings reboot`)}"
                                 android:text="@string/text_reboot" />
 
                         </LinearLayout>
@@ -533,6 +540,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="10dp"
                                 android:layout_weight="2"
+                                android:onClick="@{() -> mainActivityViewModel.sendCommand(homeViewModel.getTimeSettingCommand())}"
                                 android:text="@string/text_calibrate" />
 
                         </LinearLayout>
@@ -544,6 +552,7 @@
                             android:layout_marginTop="10dp"
                             android:layout_weight="3"
                             android:minHeight="55dp"
+                            android:onClick="@{() -> mainActivityViewModel.sendCommand(`reset default`)}"
                             android:text="@string/text_reset_to_default" />
                     </LinearLayout>
 

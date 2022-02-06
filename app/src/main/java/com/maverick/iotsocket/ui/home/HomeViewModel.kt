@@ -22,6 +22,41 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private val connection = ConnectionManager.getConnection()
     private val topicStateCallback = TopicStateCallback()
 
+    val wifiSSID = MutableLiveData("")
+    val wifiPassword = MutableLiveData("")
+    val wifiSettingValid = MutableLiveData(false)
+
+    fun updateWifiSettingValid() {
+        val ssid = wifiSSID.value
+        val password = wifiPassword.value
+        wifiSettingValid.postValue(
+            ssid != null &&
+                    password != null &&
+                    ssid.isNotBlank()
+                    && (password.isEmpty() || password.length >= 8)
+        )
+    }
+
+    fun getWifiSettingCommand(): String {
+        val ssid = wifiSSID.value
+        val password = wifiPassword.value
+        return if (
+            ssid != null &&
+            password != null &&
+            ssid.isNotBlank()
+            && (password.isEmpty() || password.length >= 8)
+        ) {
+            "settings wifi \"$ssid\" \"$password\""
+        } else {
+            ""
+        }
+    }
+
+    fun getTimeSettingCommand(): String {
+        return "settings time ${System.currentTimeMillis() / 1000}"
+    }
+
+
     init {
         ioTSocket?.let {
             mPeripheral.value = it.peripheral

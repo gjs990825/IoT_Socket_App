@@ -15,6 +15,7 @@ import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentHomeBinding
 import com.maverick.iotsocket.model.IoTSocket
 import com.maverick.iotsocket.ui.MainActivityViewModel
+import kotlin.math.abs
 
 class HomeFragment : Fragment() {
     private var TAG = "HomeFragment"
@@ -54,10 +55,6 @@ class HomeFragment : Fragment() {
         binding.homeViewModel = homeViewModel
         binding.mainActivityViewModel = mainActivityViewModel
 
-        binding.buttonSwitchRelay.setOnClickListener {
-
-        }
-
         homeViewModel.peripheral.observe(requireActivity()) {
             with(binding) {
                 textPeripheralRelay.text = getDisplayString(it.relay)
@@ -77,7 +74,17 @@ class HomeFragment : Fragment() {
 
         homeViewModel.systemInfo.observe(requireActivity()) {
             with(binding) {
-                textSystemTime.text = getDisplayString(it.time)
+                val diff = it.time - System.currentTimeMillis() / 1000
+
+                textSystemTime.text = if (diff >= 0) {
+                    "${getString(R.string.placeholder_time_diff_ahead_1)}${abs(diff)}${
+                        getString(R.string.placeholder_time_diff_ahead_2)
+                    }"
+                } else {
+                    "${getString(R.string.placeholder_time_diff_behind_1)}${abs(diff)}${
+                        getString(R.string.placeholder_time_diff_behind_2)
+                    }"
+                }
                 textSystemTemperature.text = getDisplayString(it.temperature)
             }
         }

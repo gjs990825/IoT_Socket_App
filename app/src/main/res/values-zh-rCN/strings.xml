@@ -49,7 +49,7 @@
     <string name="text_second_number">秒</string>
     <string name="text_minute">分钟</string>
     <string name="text_hour">小时</string>
-    <string name="text_tick_on_every_xth">在第X秒\n翻转</string>
+    <string name="placeholder_tick_alarm_1">每隔</string>
     <string name="prompt_error_empty_command">错误：空指令</string>
     <string name="text_basic_task">基本任务</string>
     <string name="text_temperature_abbr">@string/text_temperature</string>
@@ -57,7 +57,7 @@
     <string name="text_lower">低于</string>
     <string name="text_set_task">设定任务</string>
     <string name="placeholder_basic_task_1">当</string>
-    <string name="placeholder_basic_task_2">" "</string>
+    <string name="placeholder_basic_task_2">""</string>
     <string name="placeholder_basic_task_3">"设定值"</string>
     <string name="placeholder_basic_task_4">时，继电器打开</string>
     <string name="text_mapping_task">映射任务</string>
@@ -84,4 +84,11 @@
     <string name="text_other_settings">其它设置</string>
     <string name="text_calibrate">校准</string>
     <string name="text_reset_to_default">恢复默认状态</string>
+    <string name="text_ahead">超前</string>
+    <string name="text_lag">滞后</string>
+    <string name="placeholder_time_diff_ahead_2">秒</string>
+    <string name="placeholder_time_diff_ahead_1">超前</string>
+    <string name="placeholder_time_diff_behind_1">滞后</string>
+    <string name="placeholder_time_diff_behind_2">秒</string>
+    <string name="placeholder_tick_alarm_2">翻转\n一次</string>
 </resources>

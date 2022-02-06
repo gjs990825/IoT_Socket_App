@@ -49,10 +49,10 @@
     <string name="text_tick_alarm_setting">Tick Alarm Setting</string>
     <string name="prompt_1_to_59" translatable="false">1~59</string>
     <string name="prompt_1_to_23" translatable="false">1~23</string>
-    <string name="text_second_number">Second</string>
-    <string name="text_minute">Minute</string>
-    <string name="text_hour">Hour</string>
-    <string name="text_tick_on_every_xth">Tick On\nEvery Xth</string>
+    <string name="text_second_number">Second(s)</string>
+    <string name="text_minute">Minute(s)</string>
+    <string name="text_hour">Hour(s)</string>
+    <string name="placeholder_tick_alarm_1">Tick On\nEvery</string>
     <string name="prompt_error_empty_command">Error: Empty command</string>
     <string name="text_basic_task">Basic Task</string>
     <string name="text_temperature_abbr">Temp</string>
@@ -92,4 +92,11 @@
     <string name="text_other_settings">Other Settings</string>
     <string name="text_calibrate">Calibrate</string>
     <string name="text_reset_to_default">Reset To Default</string>
+    <string name="text_ahead">Ahead</string>
+    <string name="text_lag">Lag</string>
+    <string name="placeholder_time_diff_ahead_1">""</string>
+    <string name="placeholder_time_diff_ahead_2">s ahead</string>
+    <string name="placeholder_time_diff_behind_1">""</string>
+    <string name="placeholder_time_diff_behind_2">s behind</string>
+    <string name="placeholder_tick_alarm_2">""</string>
 </resources>

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -14,9 +16,7 @@
         <import type="android.view.View" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.alarms.AlarmsFragment"
@@ -294,7 +294,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="@string/text_tick_on_every_xth"
+                                android:text="@string/placeholder_tick_alarm_1"
                                 android:textAlignment="center"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
@@ -307,10 +307,53 @@
                                 android:layout_margin="10dp"
                                 android:background="?android:attr/listDivider" />
 
-                            <RadioGroup
-                                android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="2"
+                                android:layout_marginStart="10dp"
+                                android:minWidth="70dp"
+                                android:orientation="vertical">
+
+                                <EditText
+                                    android:id="@+id/editTextNumberEveryXthSecond"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
+                                    android:hint="@string/prompt_1_to_59"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberDecimal"
+                                    android:minHeight="48dp"
+                                    android:text="@={alarmsViewModel.tickAlarmSecond}"
+                                    android:textSize="20sp" />
+
+                                <EditText
+                                    android:id="@+id/editTextNumberEveryXthMinute"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
+                                    android:hint="@string/prompt_1_to_59"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberDecimal"
+                                    android:minHeight="48dp"
+                                    android:text="@={alarmsViewModel.tickAlarmMinute}"
+                                    android:textSize="20sp" />
+
+                                <EditText
+                                    android:id="@+id/editTextNumberEveryXthHour"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
+                                    android:hint="@string/prompt_1_to_23"
+                                    android:importantForAutofill="no"
+                                    android:inputType="numberDecimal"
+                                    android:minHeight="48dp"
+                                    android:text="@={alarmsViewModel.tickAlarmHour}"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
+
+                            <RadioGroup
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:checkedButton="@={alarmsViewModel.tickAlarmCheckedId}"
                                 android:onCheckedChanged="@{(_, id) -> alarmsViewModel.updateTickAlarmValid(id)}">
 
@@ -337,52 +380,16 @@
 
                             </RadioGroup>
 
-                            <LinearLayout
-                                android:layout_width="0dp"
+                            <TextView
+                                android:id="@+id/textView3"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
+                                android:layout_gravity="center"
                                 android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <EditText
-                                    android:id="@+id/editTextNumberEveryXthSecond"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:ems="10"
-                                    android:hint="@string/prompt_1_to_59"
-                                    android:importantForAutofill="no"
-                                    android:inputType="numberDecimal"
-                                    android:minHeight="48dp"
-                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
-                                    android:text="@={alarmsViewModel.tickAlarmSecond}"
-                                    android:textSize="20sp" />
-
-                                <EditText
-                                    android:id="@+id/editTextNumberEveryXthMinute"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:ems="10"
-                                    android:hint="@string/prompt_1_to_59"
-                                    android:importantForAutofill="no"
-                                    android:inputType="numberDecimal"
-                                    android:minHeight="48dp"
-                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
-                                    android:text="@={alarmsViewModel.tickAlarmMinute}"
-                                    android:textSize="20sp" />
-
-                                <EditText
-                                    android:id="@+id/editTextNumberEveryXthHour"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:ems="10"
-                                    android:hint="@string/prompt_1_to_23"
-                                    android:importantForAutofill="no"
-                                    android:inputType="numberDecimal"
-                                    android:minHeight="48dp"
-                                    android:afterTextChanged="@{() -> alarmsViewModel.updateTickAlarmValid()}"
-                                    android:text="@={alarmsViewModel.tickAlarmHour}"
-                                    android:textSize="20sp" />
-                            </LinearLayout>
+                                android:text="@string/placeholder_tick_alarm_2"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 

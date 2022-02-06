@@ -74,4 +74,14 @@
     <string name="text_use_bluetooth_connection">使用蓝牙连接</string>
     <string name="text_use_mqtt_connection">使用MQTT连接</string>
     <string name="prompt_please_select_a_bluetooth_device_first">请先选择一个蓝牙设备</string>
+    <string name="text_using_bluetooth_connection">正在使用蓝牙连接</string>
+    <string name="text_reboot_system">重启系统</string>
+    <string name="text_reboot">重启</string>
+    <string name="text_show_settings">显示设置</string>
+    <string name="text_wifi_settings">Wi-Fi设置</string>
+    <string name="text_password">密码</string>
+    <string name="text_update_wifi_setting">更新Wi-Fi设置</string>
+    <string name="text_other_settings">其它设置</string>
+    <string name="text_calibrate">校准</string>
+    <string name="text_reset_to_default">恢复默认状态</string>
 </resources>

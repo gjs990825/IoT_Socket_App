@@ -72,7 +72,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.appBarConnectBluetooth -> startActivity(Intent(this, BluetoothConnectionActivity::class.java))
+            R.id.appBarConnectBluetooth -> startActivity(
+                Intent(
+                    this,
+                    BluetoothConnectionActivity::class.java
+                )
+            )
             R.id.appBarSwitchToBT -> mainActivityViewModel.switchBT()
             R.id.appBarSwitchToMQTT -> mainActivityViewModel.switchMqtt()
         }

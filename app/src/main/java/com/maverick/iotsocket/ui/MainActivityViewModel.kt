@@ -9,15 +9,17 @@ import com.maverick.iotsocket.MyApplication.Companion.context
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.connection.*
 
-class MainActivityViewModel : ViewModel() {
+class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChangeListener {
     private val TAG = "MainViewModel"
     private val mIsLoading = MutableLiveData(false)
     private var mMessage = MutableLiveData<String>()
     private var connection = ConnectionManager.getConnection()
     private val busyStateHelper = BusyStateHelper()
+    var isUsingBluetoothConnection = MutableLiveData(false)
 
     init {
         connection.onBusyStateChanged = busyStateHelper
+        ConnectionManager.setTypeChangeListener(this)
     }
 
     val isLoading: LiveData<Boolean> get() = mIsLoading
@@ -95,4 +97,8 @@ class MainActivityViewModel : ViewModel() {
 //        connection = ConnectionManager.getConnection()
 //        connect()
 //    }
+
+    override fun onTypeChange(type: ConnectionManager.Type) {
+        isUsingBluetoothConnection.postValue(type == ConnectionManager.Type.BLUETOOTH)
+    }
 }

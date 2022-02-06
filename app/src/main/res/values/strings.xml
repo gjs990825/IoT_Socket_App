@@ -10,8 +10,8 @@
     <string name="prompt_canceled">Canceled</string>
     <string name="dialog_option_no">No</string>
     <string name="prompt_command_sent">Command sent</string>
-    <string name="operation_relay_on">Relay On</string>
-    <string name="operation_relay_off">Relay Off</string>
+    <string name="operation_relay_on">Relay ON</string>
+    <string name="operation_relay_off">Relay OFF</string>
     <string name="prompt_input_command">Input Command</string>
     <string name="operation_send_command">Send Command</string>
     <string name="operation_flip_relay">Flip Switch</string>
@@ -81,4 +81,15 @@
     <string name="text_use_mqtt_connection">Use MQTT</string>
     <string name="prompt_please_select_a_bluetooth_device_first">Please Select a Bluetooth Device First!</string>
     <string name="text_long_sample" translatable="false">This is a sample of long text, blah blah blah blah...</string>
+    <string name="text_using_bluetooth_connection">Using Bluetooth Connection</string>
+    <string name="text_reboot_system">Reboot System</string>
+    <string name="text_reboot">Reboot</string>
+    <string name="text_show_settings">Show Settings</string>
+    <string name="text_wifi_settings">Wi-Fi Settings</string>
+    <string name="text_ssid" translatable="false">SSID</string>
+    <string name="text_password">Password</string>
+    <string name="text_update_wifi_setting">Update Wi-Fi Setting</string>
+    <string name="text_other_settings">Other Settings</string>
+    <string name="text_calibrate">Calibrate</string>
+    <string name="text_reset_to_default">Reset To Default</string>
 </resources>

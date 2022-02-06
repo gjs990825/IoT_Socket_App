@@ -1,8 +1,8 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Theme.IoTSocket" parent="Theme.Material3.DynamicColors.DayNight">
 <!--    <style name="Theme.IoTSocket" parent="Theme.Material3.DayNight.NoActionBar">-->
 <!--        <item name="android:theme">@style/Theme.Material3.DynamicColors.DayNight</item>-->
-        <item name="android:statusBarColor">?attr/colorSecondaryContainer</item>
+        <item name="android:statusBarColor" tools:ignore="PrivateResource">?attr/colorSecondaryContainer</item>
 <!--        <item name="colorPrimary">@color/md_theme_dark_primary</item>-->
 <!--        <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>-->
 <!--        <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>-->

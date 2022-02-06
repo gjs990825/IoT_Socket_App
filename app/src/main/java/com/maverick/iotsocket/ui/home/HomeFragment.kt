@@ -55,7 +55,7 @@ class HomeFragment : Fragment() {
         binding.mainActivityViewModel = mainActivityViewModel
 
         binding.buttonSwitchRelay.setOnClickListener {
-            mainActivityViewModel.sendCommand("flip relay")
+
         }
 
         homeViewModel.peripheral.observe(requireActivity()) {
@@ -78,7 +78,7 @@ class HomeFragment : Fragment() {
         homeViewModel.systemInfo.observe(requireActivity()) {
             with(binding) {
                 textSystemTime.text = getDisplayString(it.time)
-                textSystemTemptrature.text = getDisplayString(it.temperature)
+                textSystemTemperature.text = getDisplayString(it.temperature)
             }
         }
 

@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class CommandsViewModel : ViewModel() {
+    val commandInput = MutableLiveData<String>()
+    val isCommandValid = MutableLiveData(false)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    fun updateIsCommandValid() {
+        isCommandValid.postValue(!commandInput.value.isNullOrBlank())
     }
-    val text: LiveData<String> = _text
+
+    fun getUserInputCommand(): String = commandInput.value ?: ""
 }

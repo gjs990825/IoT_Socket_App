@@ -21,7 +21,7 @@ import com.maverick.iotsocket.ui.MainActivityViewModel
 import com.maverick.iotsocket.util.showToast
 
 class CommandsFragment : Fragment(), CommandOnClickListener {
-    private val TAG = "NotificationsFragment"
+    private val TAG = "CommandsFragment"
     private val commandList = ArrayList<Command>()
     private val mainActivityViewModel by lazy { ViewModelProvider(requireActivity())[MainActivityViewModel::class.java] }
     private val commandsViewModel: CommandsViewModel by viewModels()
@@ -38,19 +38,18 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
     ): View {
         _binding = FragmentCommandsBinding.inflate(inflater, container, false)
 
-        binding.lifecycleOwner = viewLifecycleOwner
         binding.mainActivityViewModel = mainActivityViewModel
+        binding.commandsViewModel = commandsViewModel
 
-        initCommands()
+        with(binding) {
+            lifecycleOwner = viewLifecycleOwner
 
-        binding.commandListView.layoutManager = LinearLayoutManager(requireContext())
-        binding.commandListView.adapter = CommandAdapter(commandList, this)
+            commandListView.layoutManager = LinearLayoutManager(requireContext())
+            commandListView.adapter = CommandAdapter(commandList, this@CommandsFragment)
 
-        binding.outlinedTextField.editText?.setOnEditorActionListener(InputActionListener())
+            textUserInputCommand.editText?.setOnEditorActionListener(InputActionListener())
 
-        binding.floatingActionButton2.setOnClickListener {
-            Log.i(TAG, "float button pressed")
-            checkInputCommandAndSend()
+            buttonSendUserInputCommand.setOnClickListener { checkInputCommandAndSend() }
         }
 
         return binding.root
@@ -61,74 +60,64 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
         _binding = null
     }
 
-    private fun initCommands() {
-        commandList.add(Command("开启电源", "relay true"))
-        commandList.add(Command("关闭电源", "relay false"))
-        commandList.add(Command("开启蜂鸣器", "beeper true"))
-        commandList.add(Command("关闭蜂鸣器", "beeper false"))
-        commandList.add(Command("开启LED", "led 255"))
-        commandList.add(Command("半开LED", "led 127"))
-        commandList.add(Command("关闭LED", "led 0"))
-        commandList.add(Command("电机正转", "motor 100"))
-        commandList.add(Command("电机反转", "motor -100"))
-        commandList.add(Command("电机停止", "motor 0"))
-        commandList.add(Command("红外发送预设0", "infrared send 0"))
-        commandList.add(Command("红外发送预设1", "infrared send 1"))
-        commandList.add(Command("红外发送预设2", "infrared send 2"))
-        commandList.add(Command("红外发送预设3", "infrared send 3"))
-        commandList.add(Command("红外捕获到预设0", "infrared capture start 0"))
-        commandList.add(Command("红外捕获到预设1", "infrared capture start 1"))
-        commandList.add(Command("红外捕获到预设2", "infrared capture start 2"))
-        commandList.add(Command("红外捕获到预设3", "infrared capture start 3"))
-        commandList.add(Command("红外结束捕获", "infrared capture end"))
-        commandList.add(
-            Command(
-                "任务：映射亮度到电机输出",
-                "task add \"handler motor brightness linear 0 100 -100 100\""
-            )
-        )
-        commandList.add(Command("清除所有任务", "task clear"))
-        commandList.add(Command("闹钟：每秒翻转一次开关", "alarm add \"* * * * * *\" \"flip relay\" false"))
-        commandList.add(Command("清除所有闹钟", "alarm clear"))
+    init {
+        with(commandList) {
+            add(Command("开启蜂鸣器", "beeper true"))
+            add(Command("关闭蜂鸣器", "beeper false"))
+            add(Command("开启LED", "led 255"))
+            add(Command("半开LED", "led 127"))
+            add(Command("关闭LED", "led 0"))
+            add(Command("电机正转", "motor 100"))
+            add(Command("电机反转", "motor -100"))
+            add(Command("电机停止", "motor 0"))
+            add(Command("红外发送预设0", "infrared send 0"))
+            add(Command("红外发送预设1", "infrared send 1"))
+            add(Command("红外发送预设2", "infrared send 2"))
+            add(Command("红外发送预设3", "infrared send 3"))
+            add(Command("红外捕获到预设0", "infrared capture start 0"))
+            add(Command("红外捕获到预设1", "infrared capture start 1"))
+            add(Command("红外捕获到预设2", "infrared capture start 2"))
+            add(Command("红外捕获到预设3", "infrared capture start 3"))
+            add(Command("红外结束捕获", "infrared capture end"))
+            add(Command("任务：映射亮度到电机输出", "task add motor brightness linear 0 100 -100 100"))
+            add(Command("闹钟：每秒翻转一次开关", "alarm add \"* * * * * *\" \"flip relay\" false"))
+        }
     }
 
     private fun checkInputCommandAndSend(needConfirm: Boolean = true) {
-        binding.outlinedTextField.editText?.text?.let { text ->
-            val command = text.toString()
-            if (command.isBlank()) {
-                R.string.prompt_blank_command.showToast(requireContext())
-                text.clear()
-            } else {
-                if (needConfirm) {
-                    val builder1: AlertDialog.Builder? = context?.let { AlertDialog.Builder(it) }
-                    builder1?.let {
-                        it.setTitle(R.string.prompt_confirm_sending)
-                        it.setMessage(command)
-                        it.setCancelable(true)
-                        it.setIcon(android.R.drawable.ic_dialog_info)
-                        it.setPositiveButton(getString(R.string.dialog_option_yes)) { dialog, _ ->
-                            mainActivityViewModel.sendCommand(command)
-                            text.clear()
-                            R.string.prompt_command_sent.showToast(requireContext())
-                            dialog.cancel()
-                        }
-                        it.setNegativeButton(getString(R.string.dialog_option_no)) { dialog, _ ->
-                            R.string.prompt_canceled.showToast(requireContext())
-                            dialog.cancel()
-                        }
-                        it.create().show()
-                    }
-                } else {
-                    mainActivityViewModel.sendCommand(command)
-                    text.clear()
-                }
+        if (commandsViewModel.isCommandValid.value != true) {
+            return
+        }
+
+        val command = commandsViewModel.getUserInputCommand()
+
+        if (!needConfirm) {
+            mainActivityViewModel.sendCommand(command)
+            return
+        }
+        context?.let { AlertDialog.Builder(it) }?.let {
+            it.setTitle(R.string.prompt_confirm_sending)
+            it.setMessage(command)
+            it.setCancelable(true)
+            it.setIcon(android.R.drawable.ic_dialog_info)
+            it.setPositiveButton(getString(R.string.dialog_option_yes)) { dialog, _ ->
+                mainActivityViewModel.sendCommand(command)
+                R.string.prompt_command_sent.showToast(requireContext())
+                dialog.dismiss()
             }
+            it.setNegativeButton(getString(R.string.dialog_option_no)) { dialog, _ ->
+                R.string.prompt_canceled.showToast(requireContext())
+                dialog.cancel()
+            }
+            it.create().show()
         }
     }
 
     inner class InputActionListener : TextView.OnEditorActionListener {
         override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent): Boolean {
-            return if (event.action == KeyEvent.ACTION_DOWN && event.keyCode == KeyEvent.KEYCODE_ENTER) {
+            return if (event.action == KeyEvent.ACTION_DOWN &&
+                event.keyCode == KeyEvent.KEYCODE_ENTER
+            ) {
                 checkInputCommandAndSend()
                 true
             } else {

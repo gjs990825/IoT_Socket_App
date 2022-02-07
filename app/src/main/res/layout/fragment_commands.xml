@@ -7,6 +7,10 @@
             name="mainActivityViewModel"
             type="com.maverick.iotsocket.ui.MainActivityViewModel" />
 
+        <variable
+            name="commandsViewModel"
+            type="com.maverick.iotsocket.ui.commands.CommandsViewModel" />
+
         <import type="android.view.View" />
     </data>
 
@@ -29,7 +33,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField"
+                android:id="@+id/textUserInputCommand"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -41,19 +45,21 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@={commandsViewModel.commandInput}"
+                    android:afterTextChanged="@{() -> commandsViewModel.updateIsCommandValid()}"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton2"
+                android:id="@+id/buttonSendUserInputCommand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_margin="5dp"
                 android:clickable="true"
                 android:contentDescription="@string/operation_send_command"
-                android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
+                android:enabled="@{ !mainActivityViewModel.isLoading &amp;&amp; commandsViewModel.isCommandValid }"
                 android:src="@drawable/ic_commands_black_24dp" />
 
         </LinearLayout>

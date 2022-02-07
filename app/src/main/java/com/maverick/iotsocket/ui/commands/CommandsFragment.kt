@@ -1,13 +1,15 @@
 package com.maverick.iotsocket.ui.commands
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.os.Bundle
-import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -19,6 +21,7 @@ import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentCommandsBinding
 import com.maverick.iotsocket.ui.MainActivityViewModel
 import com.maverick.iotsocket.util.showToast
+
 
 class CommandsFragment : Fragment(), CommandOnClickListener {
     private val TAG = "CommandsFragment"
@@ -130,5 +133,11 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
         mainActivityViewModel.sendCommand(command.commandContent)
         "\"${command.commandName}\" ${getString(R.string.prompt_command_sent)}"
             .showToast(requireContext())
+    }
+
+    override fun onLongClick(command: Command) {
+        val clip = ClipData.newPlainText(command.commandName, command.commandContent)
+        getSystemService(requireContext(), ClipboardManager::class.java)?.setPrimaryClip(clip)
+        "Command Copied".showToast(requireContext())
     }
 }

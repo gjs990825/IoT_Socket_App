@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 interface CommandOnClickListener {
     fun onClick(command: Command)
+    fun onLongClick(command: Command)
 }
 
 class CommandAdapter(
@@ -29,6 +30,12 @@ class CommandAdapter(
             val position = viewHolder.adapterPosition
             val command = commandList[position]
             onClickListener.onClick(command)
+        }
+        viewHolder.itemView.setOnLongClickListener {
+            val position = viewHolder.adapterPosition
+            val command = commandList[position]
+            onClickListener.onLongClick(command)
+            return@setOnLongClickListener true
         }
         return viewHolder
     }

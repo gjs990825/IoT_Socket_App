@@ -81,7 +81,7 @@ class AlarmsFragment : Fragment() {
                 } else {
                     radioGroupAlarmType.check(radioButtonPeriodic.id)
                 }
-                alarmsViewModel!!.resetAlarmInput()
+                this@AlarmsFragment.alarmsViewModel.resetAlarmInput()
             }
         }
 
@@ -102,24 +102,6 @@ class AlarmsFragment : Fragment() {
             binding.textStartDate.visibility = visibility
             binding.textEndDate.visibility = visibility
         }
-        alarmsViewModel.alarmTypeCheckedId.observe(requireActivity()) {
-            Log.i(TAG, "checked id changed:$it")
-        }
-
-        alarmsViewModel.tickAlarmSecond.observe(requireActivity()) {
-            Log.i(TAG, "Second: $it")
-        }
-
-        binding.buttonSetTickAlarm.setOnClickListener {
-//            mainActivityViewModel.mqttSendCommand(controlCenterViewModel.getTickAlarmCommand())
-            val cmd = alarmsViewModel.getTickAlarmCommand()
-            Log.i(TAG, "tick alarm cmd:$cmd")
-        }
-
-
-
-        // android:onClick="@{() -> radioGroupAlarmType.check(radioButtonPeriodic.getId())  }"
-
         return binding.root
     }
 

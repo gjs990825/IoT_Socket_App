@@ -100,4 +100,7 @@
     <string name="placeholder_time_diff_behind_2">s behind</string>
     <string name="placeholder_tick_alarm_2">""</string>
     <string name="text_device_data_out_of_sync">Device Data Out of Sync</string>
+    <string name="text_command_copied">Command Copied</string>
+    <string name="text_added">added</string>
+    <string name="text_something_wrong">Something is Wrong</string>
 </resources>

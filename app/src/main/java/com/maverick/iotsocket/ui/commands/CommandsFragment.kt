@@ -138,6 +138,6 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
     override fun onLongClick(command: Command) {
         val clip = ClipData.newPlainText(command.commandName, command.commandContent)
         getSystemService(requireContext(), ClipboardManager::class.java)?.setPrimaryClip(clip)
-        "Command Copied".showToast(requireContext())
+        R.string.text_command_copied.showToast(requireContext())
     }
 }

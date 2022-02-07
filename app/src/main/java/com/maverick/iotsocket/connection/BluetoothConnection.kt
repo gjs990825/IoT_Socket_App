@@ -45,7 +45,6 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
 
     override fun disconnect() {
         service.disconnect()
-//        service.setOnEventCallback(null)
     }
 
     override fun reconnect(callback: OperationResultCallback?) {
@@ -84,7 +83,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
             if (subsList.contains(topic)) {
                 onIncomingMessage(message, topic)
             } else {
-                Log.w(TAG, "unsubscribed topic:$topic, message dropped")
+                Log.v(TAG, "unsubscribed topic:$topic, message dropped")
             }
         }
     }

@@ -241,9 +241,8 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
         if (device != null) {
             // TODO Store mac address rather than the device itself
             ConnectionManager.changeBluetoothDevice(device.device)
-            Log.i(TAG, "new bluetooth connection")
-            device.name
-            "${device.name} added".showToast(this)
+            Log.i(TAG, "new bluetooth connection ${device.name}")
+            "\"${device.name}\" ${getString(R.string.text_added)}".showToast(this)
             finish()
         }
     }

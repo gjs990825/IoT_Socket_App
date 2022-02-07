@@ -14,11 +14,11 @@ class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChang
     private val mIsLoading = MutableLiveData(false)
     private var mMessage = MutableLiveData<String>()
     private var connection = ConnectionManager.getConnection()
-    private val busyStateHelper = BusyStateHelper()
+    private val busyStateListener = BusyStateListener()
     var isUsingBluetoothConnection = MutableLiveData(false)
 
     init {
-        connection.onBusyStateChanged = busyStateHelper
+        connection.onBusyStateChanged = busyStateListener
         ConnectionManager.setTypeChangeListener(this)
     }
 
@@ -30,7 +30,11 @@ class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChang
         mMessage.postValue(msg)
     }
 
-    inner class BusyStateHelper: OnBusyStateChanged {
+    fun setMessage(id: Int) {
+        mMessage.postValue(context.getString(id))
+    }
+
+    inner class BusyStateListener: OnBusyStateChanged {
         override fun onBusyStateChanged(state: Boolean) {
             mIsLoading.postValue(state)
         }
@@ -51,12 +55,12 @@ class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChang
             when (operationStatus) {
                 OperationStatus.SUCCESS -> {
                     if (message_code != 0) {
-                        mMessage.postValue(MessageCodeHelper.get(message_code))
+                        setMessage(MessageCodeHelper.get(message_code))
                     }
                 }
-                OperationStatus.FAIL -> mMessage.postValue(context.getString(R.string.prompt_send_failed))
-                OperationStatus.TIMEOUT -> mMessage.postValue(context.getString(R.string.prompt_ack_timeout))
-                OperationStatus.ERROR -> mMessage.postValue("Something is Wrong")
+                OperationStatus.FAIL -> setMessage(context.getString(R.string.prompt_send_failed))
+                OperationStatus.TIMEOUT -> setMessage(context.getString(R.string.prompt_ack_timeout))
+                OperationStatus.ERROR -> setMessage(R.string.text_something_wrong)
             }
         }
     }
@@ -85,7 +89,7 @@ class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChang
                 connect()
             }
         } else {
-            mMessage.postValue(context.getString(R.string.prompt_please_select_a_bluetooth_device_first))
+            setMessage(context.getString(R.string.prompt_please_select_a_bluetooth_device_first))
         }
     }
 
@@ -95,12 +99,6 @@ class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChang
         connection = ConnectionManager.getConnection()
         connect()
     }
-
-//    fun switchConnection() {
-//        connection.disconnect()
-//        connection = ConnectionManager.getConnection()
-//        connect()
-//    }
 
     override fun onTypeChange(type: ConnectionManager.Type) {
         isUsingBluetoothConnection.postValue(type == ConnectionManager.Type.BLUETOOTH)

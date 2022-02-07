@@ -68,7 +68,12 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
 
             setupAdapter()
         } else {
-            requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_CONNECT), REQUEST_BT_CONNECT)
+            requestPermissions(
+                arrayOf(
+                    Manifest.permission.BLUETOOTH_CONNECT,
+                    Manifest.permission.BLUETOOTH_SCAN
+                ), REQUEST_BT_CONNECT
+            )
         }
     }
 

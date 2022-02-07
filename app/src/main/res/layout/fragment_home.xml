@@ -60,8 +60,7 @@
                     android:layout_marginVertical="10dp"
                     android:visibility="@{mainActivityViewModel.isUsingBluetoothConnection ? View.VISIBLE : View.GONE}"
                     app:cardCornerRadius="20dp"
-                    app:contentPadding="15dp"
-                    tools:visibility="visible">
+                    app:contentPadding="15dp">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -74,9 +73,35 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginStart="5dp"
-                        android:layout_weight="1"
                         android:text="@string/text_using_bluetooth_connection"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/offlineIndicator"
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:contentPadding="15dp"
+                    android:visibility="@{homeViewModel.isDeviceOutOfSync ? View.VISIBLE : View.GONE}">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_sync_problem"
+                        app:tint="?android:attr/colorError"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/text_device_data_out_of_sync"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 

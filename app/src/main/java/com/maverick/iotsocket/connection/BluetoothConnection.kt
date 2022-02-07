@@ -31,7 +31,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
         service.connect(bluetoothDevice)
         operationResultCallback = callback
 
-        Looper.myLooper()?.let {
+        Looper.getMainLooper().let {
             Handler(it).postDelayed({
                 if (!isAvailable()) {
                     callback?.onResult(OperationStatus.FAIL)

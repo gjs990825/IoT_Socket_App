@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             binding.cardViewErrorMessageText.text = errorMessage
             binding.cardViewErrorMessage.visibility = View.VISIBLE
 
-            Looper.myLooper()?.let {
+            Looper.getMainLooper().let {
                 Handler(it).postDelayed({
                     val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
                     binding.cardViewErrorMessage.startAnimation(animation)

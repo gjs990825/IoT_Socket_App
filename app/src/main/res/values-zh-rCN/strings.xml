@@ -91,4 +91,5 @@
     <string name="placeholder_time_diff_behind_1">滞后</string>
     <string name="placeholder_time_diff_behind_2">秒</string>
     <string name="placeholder_tick_alarm_2">翻转\n一次</string>
+    <string name="text_device_data_out_of_sync">设备数据失去同步</string>
 </resources>

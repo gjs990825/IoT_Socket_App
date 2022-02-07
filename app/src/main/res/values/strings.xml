@@ -99,4 +99,5 @@
     <string name="placeholder_time_diff_behind_1">""</string>
     <string name="placeholder_time_diff_behind_2">s behind</string>
     <string name="placeholder_tick_alarm_2">""</string>
+    <string name="text_device_data_out_of_sync">Device Data Out of Sync</string>
 </resources>

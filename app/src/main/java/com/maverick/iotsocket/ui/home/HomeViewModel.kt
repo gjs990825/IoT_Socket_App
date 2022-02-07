@@ -1,5 +1,7 @@
 package com.maverick.iotsocket.ui.home
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -21,6 +23,22 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private val mSystemInfo = MutableLiveData<SystemInfo>()
     private val connection = ConnectionManager.getConnection()
     private val topicStateCallback = TopicStateCallback()
+
+    private val syncTimeOut = 3000L
+
+    private var lastSyncTime = System.currentTimeMillis()
+
+    val isDeviceOutOfSync = MutableLiveData(true)
+
+    fun updateLastSyncTime() {
+        lastSyncTime = System.currentTimeMillis()
+        isDeviceOutOfSync.postValue(false)
+        Looper.getMainLooper().let {
+            Handler(it).postDelayed({
+                isDeviceOutOfSync.postValue(lastSyncTime + syncTimeOut < System.currentTimeMillis())
+            }, syncTimeOut)
+        }
+    }
 
     val wifiSSID = MutableLiveData("")
     val wifiPassword = MutableLiveData("")
@@ -55,7 +73,6 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     fun getTimeSettingCommand(): String {
         return "settings time ${System.currentTimeMillis() / 1000}"
     }
-
 
     init {
         ioTSocket?.let {
@@ -109,6 +126,7 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private inner class TopicStateCallback : SubscriptionCallback {
         override fun onMessage(message: String) {
             parseStateMessage(message)
+            updateLastSyncTime()
         }
     }
 

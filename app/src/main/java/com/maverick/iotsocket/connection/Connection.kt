@@ -114,7 +114,7 @@ abstract class Connection() {
         }
         send(topicCommand, command, callback)
         ackHandlerQueueAdd(callback)
-        Looper.myLooper()?.let {
+        Looper.getMainLooper().let {
             Handler(it).postDelayed({
                 ackHandlerQueueRemoveTimeout()
             }, timeout + 100)

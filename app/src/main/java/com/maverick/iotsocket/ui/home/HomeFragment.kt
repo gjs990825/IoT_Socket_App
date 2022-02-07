@@ -96,6 +96,7 @@ class HomeFragment : Fragment() {
         super.onStart()
         Log.w(TAG, "onStart: ")
         homeViewModel.subscribeTopicState()
+        homeViewModel.updateLastSyncTime()
     }
 
     override fun onStop() {

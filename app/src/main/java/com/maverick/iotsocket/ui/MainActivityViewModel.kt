@@ -26,6 +26,10 @@ class MainActivityViewModel : ViewModel(), ConnectionManager.ConnectionTypeChang
 
     val message: LiveData<String> get() = mMessage
 
+    fun setMessage(msg: String) {
+        mMessage.postValue(msg)
+    }
+
     inner class BusyStateHelper: OnBusyStateChanged {
         override fun onBusyStateChanged(state: Boolean) {
             mIsLoading.postValue(state)

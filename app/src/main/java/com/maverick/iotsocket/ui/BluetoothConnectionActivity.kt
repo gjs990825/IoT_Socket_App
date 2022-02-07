@@ -1,20 +1,24 @@
 package com.maverick.iotsocket.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothDeviceDecorator
@@ -26,10 +30,14 @@ import com.maverick.iotsocket.connection.ConnectionManager
 import com.maverick.iotsocket.util.showToast
 import java.util.*
 
-class BluetoothConnectionActivity: AppCompatActivity(), BluetoothService.OnBluetoothScanCallback,
-BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickListener {
-    val TAG = "BluetoothConnectionActivity"
 
+class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBluetoothScanCallback,
+    BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickListener {
+    val TAG = BluetoothConnectionActivity::class.simpleName
+
+    private val REQUEST_BT_CONNECT = 1
+    private val REQUEST_BT_SCAN = 2
+    private val REQUEST_ENABLE_BT = 3
     private var pgBar: ProgressBar? = null
     private var mMenu: Menu? = null
     private var mRecyclerView: RecyclerView? = null
@@ -39,57 +47,95 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
     private var mService: BluetoothService? = null
     private var mScanning: Boolean = false
 
+    @RequiresApi(Build.VERSION_CODES.S)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bluetooth_connection)
 
-        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
-        mBluetoothAdapter = bluetoothManager.adapter
-
         mRecyclerView = findViewById<View>(R.id.bluetoothListRecyclerView) as RecyclerView
         val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         mRecyclerView!!.layoutManager = lm
+        pgBar = findViewById(R.id.bluetoothScanProgressBar)
 
-        if (ActivityCompat.checkSelfPermission(
+        if (ContextCompat.checkSelfPermission(
                 this,
                 Manifest.permission.BLUETOOTH_CONNECT
-            ) != PackageManager.PERMISSION_GRANTED
+            ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return
+            mService = BluetoothService.getDefaultInstance()
+            mService?.setOnScanCallback(this)
+            mService?.setOnEventCallback(this)
+
+            setupAdapter()
+        } else {
+            requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_CONNECT), REQUEST_BT_CONNECT)
         }
-        mAdapter = DeviceItemAdapter(this, mBluetoothAdapter!!.bondedDevices)
-        mAdapter!!.setOnAdapterItemClickListener(this)
-        mRecyclerView!!.adapter = mAdapter
+    }
 
-        mService = BluetoothService.getDefaultInstance()
+    @SuppressLint("MissingPermission")
+    fun setupAdapter() {
+        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+        mBluetoothAdapter = bluetoothManager.adapter
 
-        mService!!.setOnScanCallback(this)
-        mService!!.setOnEventCallback(this)
-
-        pgBar = findViewById(R.id.bluetoothScanProgressBar)
+        if (mBluetoothAdapter?.isEnabled != true) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+        } else {
+            mAdapter = DeviceItemAdapter(this, mBluetoothAdapter!!.bondedDevices)
+            mAdapter!!.setOnAdapterItemClickListener(this)
+            mRecyclerView!!.adapter = mAdapter
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        mService!!.setOnEventCallback(this)
+        mService?.setOnEventCallback(this)
     }
 
     override fun onPause() {
         super.onPause()
-        mService!!.setOnEventCallback(null)
+        mService?.setOnEventCallback(null)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_ENABLE_BT -> when (resultCode) {
+                RESULT_OK -> setupAdapter()
+            }
+        }
+    }
 
-        if (id == R.id.bluetoothScan) {
+    @SuppressLint("MissingPermission")
+    @RequiresApi(Build.VERSION_CODES.S)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_BT_CONNECT -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mService = BluetoothService.getDefaultInstance()
+                    mService?.setOnScanCallback(this)
+                    mService?.setOnEventCallback(this)
+
+                    setupAdapter()
+                }
+            }
+            REQUEST_BT_SCAN -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startStopScan()
+                }
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.S)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.bluetoothScan) {
+            Log.i(TAG, "onOptionsItemSelected: ")
             startStopScan()
             return true
         }
@@ -97,18 +143,27 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
         return super.onOptionsItemSelected(item)
     }
 
+    @RequiresApi(Build.VERSION_CODES.S)
     private fun startStopScan() {
-        if (!mScanning) {
-            mService!!.startScan()
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.BLUETOOTH_SCAN
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_SCAN), REQUEST_BT_SCAN)
         } else {
-            mService!!.stopScan()
+            if (!mScanning) {
+                mService?.startScan()
+            } else {
+                mService?.stopScan()
+            }
         }
     }
 
     override fun onDeviceDiscovered(device: BluetoothDevice, rssi: Int) {
-        if (
-            ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.BLUETOOTH_CONNECT
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.BLUETOOTH_CONNECT
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             // TODO: Consider calling
@@ -179,7 +234,6 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
 
     override fun onItemClick(device: BluetoothDeviceDecorator?, position: Int) {
         if (device != null) {
-//            mService!!.connect(device.device)
             // TODO Store mac address rather than the device itself
             ConnectionManager.changeBluetoothDevice(device.device)
             Log.i(TAG, "new bluetooth connection")
@@ -188,22 +242,4 @@ BluetoothService.OnBluetoothEventCallback, DeviceItemAdapter.OnAdapterItemClickL
             finish()
         }
     }
-
-    // TODO bluetooth permission request
-//    private var requestBluetooth =
-//        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-//            Log.i(TAG, "bt req $result")
-//            if (result.resultCode == RESULT_OK) {
-//                //granted
-//            } else {
-//                //deny
-//            }
-//        }
-//
-//    private val requestMultiplePermissions =
-//        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-//            permissions.entries.forEach {
-//                Log.d("test006", "${it.key} = ${it.value}")
-//            }
-//        }
 }

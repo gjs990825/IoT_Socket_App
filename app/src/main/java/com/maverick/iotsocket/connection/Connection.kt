@@ -155,6 +155,7 @@ abstract class Connection() {
     protected abstract fun unsubscribe(topic: String)
 
     fun subscribeTopic(topic: String, callback: SubscriptionCallback) {
+        Log.i(TAG, "subscribeTopic: $topic")
         var callbackSet = subscribeCallbackMap[topic]
         if (callbackSet == null) {
             callbackSet = setOf(callback)
@@ -166,11 +167,11 @@ abstract class Connection() {
     }
 
     fun unsubscribeTopic(topic: String, callback: SubscriptionCallback) {
+        Log.i(TAG, "unsubscribeTopic: $topic")
         val callbackSet = subscribeCallbackMap[topic]
         if (callbackSet != null) {
             when (callbackSet.size) {
-                0 -> subscribeCallbackMap.remove(topic)
-                1 -> {
+                0, 1 -> {
                     subscribeCallbackMap.remove(topic)
                     unsubscribe(topic)
                 }

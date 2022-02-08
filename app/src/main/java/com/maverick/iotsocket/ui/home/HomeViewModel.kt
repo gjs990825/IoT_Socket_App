@@ -21,7 +21,7 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private val mPeripheral = MutableLiveData<Peripheral>()
     private val mSensor = MutableLiveData<Sensor>()
     private val mSystemInfo = MutableLiveData<SystemInfo>()
-    private val connection = ConnectionManager.getConnection()
+    private var connection = ConnectionManager.getConnection()
     private val topicStateCallback = TopicStateCallback()
 
     private val syncTimeOut = 3000L
@@ -29,6 +29,13 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private var lastSyncTime = System.currentTimeMillis()
 
     val isDeviceOutOfSync = MutableLiveData(true)
+
+    fun updateConnection() {
+        unsubscribeTopicState()
+        connection = ConnectionManager.getConnection()
+        subscribeTopicState()
+        Log.w(TAG, "HomeViewModel connection updated")
+    }
 
     fun updateLastSyncTime() {
         lastSyncTime = System.currentTimeMillis()

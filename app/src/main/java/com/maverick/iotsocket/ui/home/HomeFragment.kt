@@ -89,6 +89,10 @@ class HomeFragment : Fragment() {
             }
         }
 
+        mainActivityViewModel.isUsingBluetoothConnection.observe(requireActivity()) {
+            homeViewModel.updateConnection()
+        }
+
         return root
     }
 

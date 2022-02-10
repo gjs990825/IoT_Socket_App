@@ -62,7 +62,7 @@
     <string name="placeholder_basic_task_1">If</string>
     <string name="placeholder_basic_task_2">is</string>
     <string name="placeholder_basic_task_3">than</string>
-    <string name="placeholder_basic_task_4">, Relay ON</string>
+    <string name="placeholder_basic_task_4">, Switch ON</string>
     <string name="text_mapping_task">Mapping Task</string>
     <string name="placeholder_mapping_task_1">Map</string>
     <string name="placeholder_mapping_task_2">value</string>
@@ -103,4 +103,7 @@
     <string name="text_command_copied">Command Copied</string>
     <string name="text_added">added</string>
     <string name="text_something_wrong">Something is Wrong</string>
+    <string name="text_update_action">Update Action</string>
+    <string name="text_flip">Flip</string>
+    <string name="text_default_action_settings">Default Action Settings</string>
 </resources>

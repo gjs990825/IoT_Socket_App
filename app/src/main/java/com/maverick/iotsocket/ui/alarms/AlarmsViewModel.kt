@@ -3,6 +3,7 @@ package com.maverick.iotsocket.ui.alarms
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.maverick.iotsocket.ActionSettingHelper
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.model.AlarmsUIData
 import com.maverick.iotsocket.model.Date
@@ -101,8 +102,8 @@ class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
             ""
         } else {
             Log.i(TAG, "$cronStringStart, $cronStringEnd")
-            "alarm add \"${cronStringStart}\" \"relay true\" $isOneShot\n" +
-                    "alarm add \"${cronStringEnd}\" \"relay false\" $isOneShot"
+            "alarm add \"${cronStringStart}\" \"${ActionSettingHelper.switchOnCommand}\" $isOneShot\n" +
+                    "alarm add \"${cronStringEnd}\" \"${ActionSettingHelper.switchOffCommand}\" $isOneShot"
         }
     }
 
@@ -147,7 +148,7 @@ class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
                 append("*/$x ")
                 for (i in index + 1 until 6) append("* ")
                 val cronString = toString().trimEnd()
-                "alarm add \"$cronString\" \"flip relay\" false"
+                "alarm add \"$cronString\" \"${ActionSettingHelper.switchFlipCommand}\" false"
             }
         } else {
             ""

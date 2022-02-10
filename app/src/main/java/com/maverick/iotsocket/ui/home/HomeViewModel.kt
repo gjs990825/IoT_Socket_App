@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.maverick.iotsocket.ActionSettingHelper
 import com.maverick.iotsocket.connection.ConnectionManager
 import com.maverick.iotsocket.connection.SubscriptionCallback
 import com.maverick.iotsocket.model.IoTSocket
@@ -24,10 +25,46 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
     private var connection = ConnectionManager.getConnection()
     private val topicStateCallback = TopicStateCallback()
 
+    val switchState = MutableLiveData(false)
+    val switchOnCommand = MutableLiveData<String>()
+    val switchOffCommand = MutableLiveData<String>()
+    val switchFlipCommand = MutableLiveData<String>()
+
+    init {
+        switchState.postValue(ActionSettingHelper.switchState)
+        switchOnCommand.postValue(ActionSettingHelper.switchOnCommand)
+        switchOffCommand.postValue(ActionSettingHelper.switchOffCommand)
+        switchFlipCommand.postValue(ActionSettingHelper.switchFlipCommand)
+    }
+
+    fun getSwitchCurrentCommand(): String {
+        val cmd = if (switchState.value == true) {
+            switchOffCommand.value ?: ""
+        } else {
+            switchOnCommand.value ?: ""
+        }
+        val newState = !(switchState.value ?: false)
+        switchState.postValue(newState)
+        ActionSettingHelper.switchState = newState
+        return cmd
+    }
+
+    fun updateActionSettings() {
+        Log.w(TAG, "updateActionSettings")
+        switchOnCommand.value?.let { ActionSettingHelper.switchOnCommand = it }
+        switchOffCommand.value?.let { ActionSettingHelper.switchOffCommand = it }
+        switchFlipCommand.value?.let { ActionSettingHelper.switchFlipCommand = it }
+    }
+
+    fun resetActionSettings() {
+        switchOnCommand.postValue("relay true")
+        switchOffCommand.postValue("relay false")
+        switchFlipCommand.postValue("flip relay")
+        updateActionSettings()
+    }
+
     private val syncTimeOut = 3000L
-
     private var lastSyncTime = System.currentTimeMillis()
-
     val isDeviceOutOfSync = MutableLiveData(true)
 
     fun updateConnection() {

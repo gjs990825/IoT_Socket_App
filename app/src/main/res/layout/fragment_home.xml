@@ -29,9 +29,9 @@
             android:layout_margin="20dp"
             android:clickable="true"
             android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
-            android:onClick="@{() -> mainActivityViewModel.sendCommand(`flip relay`)}"
-            android:text="@{homeViewModel.peripheral.relay ? @string/operation_relay_off : @string/operation_relay_on}"
-            app:icon="@{homeViewModel.peripheral.relay ? @drawable/ic_toggle_off : @drawable/ic_toggle_on}"
+            android:onClick="@{() -> mainActivityViewModel.sendCommand(homeViewModel.getSwitchCurrentCommand())}"
+            android:text="@{homeViewModel.switchState ? @string/text_off : @string/text_on}"
+            app:icon="@{homeViewModel.switchState ? @drawable/ic_toggle_off : @drawable/ic_toggle_on}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_wrapBehaviorInParent="skipped"
@@ -86,9 +86,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"
+                    android:visibility="@{homeViewModel.isDeviceOutOfSync ? View.VISIBLE : View.GONE}"
                     app:cardCornerRadius="20dp"
                     app:contentPadding="15dp"
-                    android:visibility="@{homeViewModel.isDeviceOutOfSync ? View.VISIBLE : View.GONE}">
+                    tools:visibility="gone">
 
                     <ImageView
                         android:layout_width="40dp"
@@ -227,7 +228,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"
-                    app:cardCornerRadius="20dp">
+                    app:cardCornerRadius="20dp"
+                    tools:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -385,20 +387,6 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <Button
-                    android:id="@+id/buttonSwitchRelay"
-                    android:layout_width="wrap_content"
-                    android:layout_height="70dp"
-                    android:layout_gravity="center"
-                    android:layout_marginVertical="20dp"
-                    android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
-                    android:minWidth="150dp"
-                    android:onClick="@{() -> mainActivityViewModel.sendCommand(`flip relay`)}"
-                    android:text="@{homeViewModel.peripheral.relay ? @string/operation_relay_off : @string/operation_relay_on}"
-                    android:textSize="20sp"
-                    android:visibility="gone"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
                 <com.google.android.material.switchmaterial.SwitchMaterial
                     android:id="@+id/switchShowSettings"
                     android:layout_width="match_parent"
@@ -406,6 +394,137 @@
                     android:layout_marginHorizontal="30dp"
                     android:text="@string/text_show_settings"
                     tools:ignore="TextContrastCheck" />
+
+
+                <com.google.android.material.card.MaterialCardView
+                    style="?attr/materialCardViewElevatedStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginVertical="10dp"
+                    android:visibility="@{switchShowSettings.checked ? View.VISIBLE : View.GONE}"
+                    app:cardCornerRadius="20dp"
+                    tools:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:text="@string/text_default_action_settings"
+                            android:textColor="?android:attr/colorPrimary"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="@{`&quot;` + @string/text_flip + `&quot;`}"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="&quot;FLIP&quot;" />
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_weight="3"
+                                android:text="@={homeViewModel.switchOnCommand}" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="@{`&quot;` + @string/text_off + `&quot;`}"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="&quot;OFF&quot;" />
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_weight="3"
+                                android:text="@={homeViewModel.switchOffCommand}" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="2"
+                                android:text="@{`&quot;` + @string/text_on + `&quot;`}"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                tools:text="&quot;ON&quot;" />
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="10dp"
+                                android:layout_weight="3"
+                                android:text="@={homeViewModel.switchFlipCommand}" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/buttonResetDefaultAction"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="2"
+                                android:minHeight="55dp"
+                                android:onClick="@{() -> homeViewModel.resetActionSettings()}"
+                                android:text="@string/text_reset"
+                                tools:ignore="ButtonStyle" />
+
+                            <Button
+                                android:id="@+id/buttonUpdateDefaultAction"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_weight="5"
+                                android:minHeight="55dp"
+                                android:onClick="@{() -> homeViewModel.updateActionSettings()}"
+                                android:text="@string/text_update_action"
+                                tools:ignore="ButtonStyle" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     style="?attr/materialCardViewElevatedStyle"

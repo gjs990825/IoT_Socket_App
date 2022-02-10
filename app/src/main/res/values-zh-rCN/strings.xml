@@ -59,7 +59,7 @@
     <string name="placeholder_basic_task_1">当</string>
     <string name="placeholder_basic_task_2">""</string>
     <string name="placeholder_basic_task_3">"设定值"</string>
-    <string name="placeholder_basic_task_4">时，继电器打开</string>
+    <string name="placeholder_basic_task_4">时，开关打开</string>
     <string name="text_mapping_task">映射任务</string>
     <string name="placeholder_mapping_task_1">映射</string>
     <string name="placeholder_mapping_task_2">值</string>
@@ -95,4 +95,7 @@
     <string name="text_command_copied">指令已拷贝</string>
     <string name="text_added">已添加</string>
     <string name="text_something_wrong">出错了</string>
+    <string name="text_update_action">更新动作</string>
+    <string name="text_flip">翻转</string>
+    <string name="text_default_action_settings">默认动作设置</string>
 </resources>

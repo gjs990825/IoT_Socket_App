@@ -450,10 +450,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:text="@{`&quot;` + @string/text_flip + `&quot;`}"
+                                android:text="@{`&quot;` + @string/text_on + `&quot;`}"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                tools:text="&quot;FLIP&quot;" />
+                                tools:text="&quot;ON&quot;" />
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="0dp"
@@ -496,10 +496,10 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
-                                android:text="@{`&quot;` + @string/text_on + `&quot;`}"
+                                android:text="@{`&quot;` + @string/text_flip + `&quot;`}"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                tools:text="&quot;ON&quot;" />
+                                tools:text="&quot;FLIP&quot;" />
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:layout_width="0dp"

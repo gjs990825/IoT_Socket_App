@@ -139,7 +139,7 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
                             getBoolean("relay"),
                             getBoolean("led"),
                             getBoolean("beeper"),
-                            getInt("motor")
+                            getInt("pwm")
                         )
                     )
                 }
@@ -148,7 +148,7 @@ class HomeViewModel(ioTSocket: IoTSocket?) : ViewModel() {
                         Sensor(
                             getDouble("temperature").toFloat(),
                             getDouble("pressure").toFloat(),
-                            getDouble("brightness").toFloat()
+                            getInt("brightness")
                         )
                     )
                 }

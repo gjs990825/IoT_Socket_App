@@ -19,7 +19,7 @@
     <string name="text_relay">Relay</string>
     <string name="text_led" translatable="false">LED</string>
     <string name="text_beeper">Beeper</string>
-    <string name="text_motor">Motor</string>
+    <string name="text_pwm" translatable="false">PWM</string>
     <string name="text_sensor">Sensor</string>
     <string name="text_temperature">Temperature</string>
     <string name="text_pressure">Pressure</string>

@@ -1,6 +1,6 @@
 package com.maverick.iotsocket.model
 
-data class IoTSocket(val sensor: Sensor = Sensor(-1f, -1f, -1f),
+data class IoTSocket(val sensor: Sensor = Sensor(-1f, -1f, -1),
                      val peripheral: Peripheral = Peripheral(
                          relay = false,
                          led = false,

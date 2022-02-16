@@ -19,7 +19,6 @@
     <string name="text_peripheral">外设</string>
     <string name="text_relay">继电器</string>
     <string name="text_beeper">蜂鸣器</string>
-    <string name="text_motor">电机</string>
     <string name="text_sensor">传感器</string>
     <string name="text_temperature">温度</string>
     <string name="text_pressure">气压</string>

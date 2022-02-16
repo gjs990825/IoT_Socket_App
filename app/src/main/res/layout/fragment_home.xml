@@ -62,20 +62,30 @@
                     app:cardCornerRadius="20dp"
                     app:contentPadding="15dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_bluetooth"
-                        app:tint="?android:attr/colorPrimary"
-                        tools:ignore="ContentDescription" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="UseCompoundDrawables">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/text_using_bluetooth_connection"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_bluetooth"
+                            app:tint="?android:attr/colorPrimary"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/text_using_bluetooth_connection"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -89,22 +99,32 @@
                     android:visibility="@{homeViewModel.isDeviceOutOfSync ? View.VISIBLE : View.GONE}"
                     app:cardCornerRadius="20dp"
                     app:contentPadding="15dp"
-                    tools:visibility="gone">
+                    tools:visibility="visible">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/ic_sync_problem"
-                        app:tint="?android:attr/colorError"
-                        tools:ignore="ContentDescription" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:ignore="UseCompoundDrawables">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="@string/text_device_data_out_of_sync"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_sync_problem"
+                            app:tint="?android:attr/colorError"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:text="@string/text_device_data_out_of_sync"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -206,7 +226,7 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
-                                android:text="@string/text_motor"
+                                android:text="@string/text_pwm"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 

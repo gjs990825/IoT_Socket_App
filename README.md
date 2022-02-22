@@ -3,8 +3,6 @@
 This Android App is a part of [**IoT Socket**](https://github.com/gjs990825/IoT_Socket), my
 graduation project.
 
-<br />
-
 # App Running Preview
 
 Testing environment:

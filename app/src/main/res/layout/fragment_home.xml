@@ -31,7 +31,7 @@
             android:enabled="@{mainActivityViewModel.isLoading ? false : true}"
             android:onClick="@{() -> mainActivityViewModel.sendCommand(homeViewModel.getSwitchCurrentCommand())}"
             android:text="@{homeViewModel.switchState ? @string/text_off : @string/text_on}"
-            app:icon="@{homeViewModel.switchState ? @drawable/ic_toggle_off : @drawable/ic_toggle_on}"
+            app:icon="@{homeViewModel.switchState ? @drawable/ic_toggle_on : @drawable/ic_toggle_off}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_wrapBehaviorInParent="skipped"

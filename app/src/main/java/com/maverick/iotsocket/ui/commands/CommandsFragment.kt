@@ -1,7 +1,5 @@
 package com.maverick.iotsocket.ui.commands
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.LayoutInflater
@@ -9,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +17,7 @@ import com.maverick.iotsocket.CommandOnClickListener
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentCommandsBinding
 import com.maverick.iotsocket.ui.MainActivityViewModel
+import com.maverick.iotsocket.util.showKeyboard
 import com.maverick.iotsocket.util.showToast
 
 
@@ -81,7 +79,7 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
             add(Command("红外捕获到预设1", "infrared capture 1"))
             add(Command("红外捕获到预设2", "infrared capture 2"))
             add(Command("红外捕获到预设3", "infrared capture 3"))
-            add(Command("任务：映射亮度到电机输出", "task add motor brightness linear 0 100 -100 100"))
+            add(Command("任务：映射亮度到PWM输出", "task add motor brightness linear 0 100 -100 100"))
             add(Command("闹钟：每秒翻转一次开关", "alarm add \"* * * * * *\" \"flip relay\" false"))
         }
     }
@@ -135,8 +133,7 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
     }
 
     override fun onLongClick(command: Command) {
-        val clip = ClipData.newPlainText(command.commandName, command.commandContent)
-        getSystemService(requireContext(), ClipboardManager::class.java)?.setPrimaryClip(clip)
-        R.string.text_command_copied.showToast(requireContext())
+        commandsViewModel.updateUserInputCommand(command.commandContent)
+        binding.textUserInputCommand.editText?.showKeyboard()
     }
 }

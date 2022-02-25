@@ -13,4 +13,5 @@ class CommandsViewModel : ViewModel() {
     }
 
     fun getUserInputCommand(): String = commandInput.value ?: ""
+    fun updateUserInputCommand(cmd: String) = commandInput.postValue(cmd)
 }

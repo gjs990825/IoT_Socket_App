@@ -97,4 +97,11 @@
     <string name="text_update_action">更新动作</string>
     <string name="text_flip">翻转</string>
     <string name="text_default_action_settings">默认动作设置</string>
+    <string name="placeholder_timer_1">""</string>
+    <string name="placeholder_timer_2">后</string>
+    <string name="text_action">动作</string>
+    <string name="text_hour_abbr">@string/text_hour</string>
+    <string name="text_minute_abbr">@string/text_minute</string>
+    <string name="text_second_abbr">@string/text_second_number</string>
+    <string name="text_timer">定时器</string>
 </resources>

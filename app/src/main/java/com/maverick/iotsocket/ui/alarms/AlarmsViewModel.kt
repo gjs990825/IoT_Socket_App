@@ -8,9 +8,68 @@ import com.maverick.iotsocket.R
 import com.maverick.iotsocket.model.AlarmsUIData
 import com.maverick.iotsocket.model.Date
 import com.maverick.iotsocket.model.Time
+import com.maverick.iotsocket.util.toCron
+import java.time.LocalDateTime
 
 class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
     private val TAG = "ControlCenterViewModel"
+
+    val timerHour = MutableLiveData("0")
+    val timerMinute = MutableLiveData("0")
+    val timerSecond = MutableLiveData("0")
+    val timerAction = MutableLiveData("flip relay")
+
+    val isTimerValid = MutableLiveData(false)
+
+    fun getTimerCommand(): String {
+        val seconds = getSeconds()
+        val action = timerAction.value
+        return if (seconds == null || action == null) {
+            ""
+        } else {
+            val triggerTime = LocalDateTime.now().plusSeconds(seconds.toLong())
+            val cronExp = triggerTime.toCron()
+            Log.i(TAG, "getTimerCommand: $cronExp")
+            "alarm add \"${cronExp}\" \"${action}\" true"
+        }
+    }
+
+    fun resetTimerInput() {
+        timerHour.postValue("0")
+        timerMinute.postValue("0")
+        timerSecond.postValue("0")
+        timerAction.postValue("flip relay")
+    }
+
+    fun getSeconds(): Int? {
+        return try {
+            val pairs = listOf(
+                Pair(timerHour.value?.toInt(), 3600),
+                Pair(timerMinute.value?.toInt(), 60),
+                Pair(timerSecond.value?.toInt(), 1),
+            )
+
+            var seconds = 0
+            for (pair in pairs) {
+                if (pair.first == null || pair.first!! < 0) {
+                    return null
+                } else {
+                    seconds += pair.second * pair.first!!.toInt()
+                }
+            }
+            if (seconds == 0) {
+                null
+            } else {
+                seconds
+            }
+        } catch (e: NumberFormatException) {
+            null
+        }
+    }
+
+    fun updateIsTimerValid() {
+        isTimerValid.postValue(!(timerAction.value.isNullOrBlank() || getSeconds() == null))
+    }
 
     val alarmTypeCheckedId = MutableLiveData(R.id.radioButtonPeriodic)
     val alarmStartDate = MutableLiveData<Date>()
@@ -22,14 +81,14 @@ class AlarmsViewModel(alarmsUIData: AlarmsUIData) : ViewModel() {
     val tickAlarmMinute = MutableLiveData<String>()
     val tickAlarmHour = MutableLiveData<String>()
     val tickAlarmCheckedId = MutableLiveData(R.id.radioButtonEveryXthSecond)
-    val tickAlarmValid = MutableLiveData(false)
+    val isTickAlarmValid = MutableLiveData(false)
 
-    fun updateTickAlarmValid() {
-        tickAlarmValid.postValue(with(getTickAlarmCheckedInput()) { this != null && this > 0 })
+    fun updateIsTickAlarmValid() {
+        isTickAlarmValid.postValue(with(getTickAlarmCheckedInput()) { this != null && this > 0 })
     }
 
-    fun updateTickAlarmValid(id: Int) {
-        tickAlarmValid.postValue(with(getTickAlarmCheckedInput(id)) { this != null && this > 0 })
+    fun updateIsTickAlarmValid(id: Int) {
+        isTickAlarmValid.postValue(with(getTickAlarmCheckedInput(id)) { this != null && this > 0 })
     }
 
     init {

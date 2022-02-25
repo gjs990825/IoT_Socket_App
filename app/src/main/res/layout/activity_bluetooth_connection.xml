@@ -5,11 +5,13 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
+    android:animateLayoutChanges="true"
     tools:context=".ui.MainActivity">
 
     <ProgressBar
         android:id="@+id/bluetoothScanProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
+        android:layout_marginTop="-7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
@@ -21,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:layout_marginTop="5dp"
         tools:listitem="@layout/device_item" />
 
 </LinearLayout>

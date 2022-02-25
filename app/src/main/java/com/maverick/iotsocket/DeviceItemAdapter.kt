@@ -1,14 +1,5 @@
 package com.maverick.iotsocket
 
-import android.bluetooth.BluetoothDevice
-import android.content.Context
-import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.recyclerview.widget.RecyclerView
-
 /*
 * MIT License
 *
@@ -32,12 +23,20 @@ import androidx.recyclerview.widget.RecyclerView
 * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 * SOFTWARE.
 */
+import android.bluetooth.BluetoothDevice
+import android.content.Context
+import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothDeviceDecorator
 
 /**
  * Created by douglas on 10/04/2017.
  */
-class DeviceItemAdapter(private val mContext: Context, devices: List<BluetoothDevice>) :
+class DeviceItemAdapter(mContext: Context, devices: List<BluetoothDevice>) :
     RecyclerView.Adapter<DeviceItemAdapter.ViewHolder>() {
     private val mDevices: List<BluetoothDeviceDecorator> = decorateDevices(devices)
     private val mInflater: LayoutInflater =
@@ -47,7 +46,7 @@ class DeviceItemAdapter(private val mContext: Context, devices: List<BluetoothDe
 
     constructor(context: Context, devices: Set<BluetoothDevice>?) : this(
         context,
-        ArrayList<BluetoothDevice>(devices)
+        ArrayList<BluetoothDevice>(devices?.toMutableList() ?: setOf())
     )
 
     override fun onCreateViewHolder(
@@ -66,7 +65,11 @@ class DeviceItemAdapter(private val mContext: Context, devices: List<BluetoothDe
         val device: BluetoothDeviceDecorator = mDevices[position]
         holder.tvName.text = if (TextUtils.isEmpty(device.name)) "---" else device.name
         holder.tvAddress.text = device.address
-        holder.tvRSSI.text = device.rssi.toString()
+        holder.tvRSSI.text = if (device.rssi != 0) {
+            device.rssi.toString()
+        } else {
+            ""
+        }
         holder.itemView.setOnClickListener {
             mOnItemClickListener?.onItemClick(
                 device,

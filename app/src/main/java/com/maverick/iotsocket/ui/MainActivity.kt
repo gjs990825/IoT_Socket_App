@@ -7,7 +7,6 @@ import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -55,11 +54,7 @@ class MainActivity : AppCompatActivity() {
 
             Looper.getMainLooper().let {
                 Handler(it).postDelayed({
-                    val animation = AnimationUtils.loadAnimation(this, R.anim.fade_out)
-                    binding.cardViewErrorMessage.startAnimation(animation)
-                    Handler(it).postDelayed({
-                        binding.cardViewErrorMessage.visibility = View.GONE
-                    }, 1000)
+                    binding.cardViewErrorMessage.visibility = View.GONE
                 }, 2000)
             }
         }

@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothDeviceDecorator
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothService
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothStatus
-import com.maverick.iotsocket.DeviceItemAdapter
+import com.maverick.iotsocket.model.DeviceItemAdapter
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.connection.ConnectionManager
 import com.maverick.iotsocket.util.showToast

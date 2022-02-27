@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.maverick.iotsocket.MessageCodeHelper
+import com.maverick.iotsocket.util.MessageCodeHelper
 import com.maverick.iotsocket.MyApplication.Companion.context
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.connection.*

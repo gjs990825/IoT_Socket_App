@@ -1,7 +1,8 @@
-package com.maverick.iotsocket
+package com.maverick.iotsocket.util
 
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.maverick.iotsocket.MyApplication
 
 object ActionSettingHelper {
     private val sharedPreferences: SharedPreferences =

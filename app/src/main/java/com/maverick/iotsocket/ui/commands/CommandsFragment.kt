@@ -11,9 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.maverick.iotsocket.Command
-import com.maverick.iotsocket.CommandAdapter
-import com.maverick.iotsocket.CommandOnClickListener
+import com.maverick.iotsocket.model.Command
+import com.maverick.iotsocket.model.CommandAdapter
+import com.maverick.iotsocket.model.CommandAdapter.CommandOnClickListener
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.databinding.FragmentCommandsBinding
 import com.maverick.iotsocket.ui.MainActivityViewModel
@@ -127,13 +127,13 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
     }
 
     override fun onClick(command: Command) {
-        mainActivityViewModel.sendCommand(command.commandContent)
-        "\"${command.commandName}\" ${getString(R.string.prompt_command_sent)}"
+        mainActivityViewModel.sendCommand(command.content)
+        "\"${command.name}\" ${getString(R.string.prompt_command_sent)}"
             .showToast(requireContext())
     }
 
     override fun onLongClick(command: Command) {
-        commandsViewModel.updateUserInputCommand(command.commandContent)
+        commandsViewModel.updateUserInputCommand(command.content)
         binding.textUserInputCommand.editText?.showKeyboard()
     }
 }

@@ -63,7 +63,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
@@ -78,7 +78,7 @@
                             android:animateLayoutChanges="true"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="50dp"
                                 android:gravity="center"
@@ -102,7 +102,7 @@
                             android:animateLayoutChanges="true"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="50dp"
                                 android:gravity="center"
@@ -120,7 +120,7 @@
                                 android:textAlignment="center"
                                 tools:text="0" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="50dp"
                                 android:gravity="center"
@@ -138,7 +138,7 @@
                                 android:textAlignment="center"
                                 tools:text="0" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="50dp"
                                 android:gravity="center"
@@ -156,7 +156,7 @@
                                 android:textAlignment="center"
                                 tools:text="0" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="50dp"
                                 android:gravity="center"
@@ -164,7 +164,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="50dp"
                                 android:gravity="center"
@@ -180,7 +180,7 @@
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonResetTimerInput"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -191,7 +191,7 @@
                                 android:text="@string/text_reset"
                                 tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonSetTimer"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -222,7 +222,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
@@ -239,7 +239,7 @@
                             android:checkedButton="@id/radioButtonPeriodic"
                             android:orientation="horizontal">
 
-                            <RadioButton
+                            <com.google.android.material.radiobutton.MaterialRadioButton
                                 android:id="@+id/radioButtonPeriodic"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -247,7 +247,7 @@
                                 android:text="@string/text_periodic"
                                 android:textSize="20sp" />
 
-                            <RadioButton
+                            <com.google.android.material.radiobutton.MaterialRadioButton
                                 android:id="@+id/radioButtonOnce"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -264,7 +264,7 @@
                             android:animateLayoutChanges="true"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
@@ -273,7 +273,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textStartDate"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
@@ -289,7 +289,7 @@
                                 style="@style/DividerVertical"
                                 android:layout_margin="10dp" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textStartTime"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
@@ -328,7 +328,7 @@
                             android:animateLayoutChanges="true"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
                                 android:layout_weight="1"
@@ -337,7 +337,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textEndDate"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
@@ -353,7 +353,7 @@
                                 style="@style/DividerVertical"
                                 android:layout_margin="10dp" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textEndTime"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
@@ -392,7 +392,7 @@
                             android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonResetIntervalAlarmInput"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -402,7 +402,7 @@
                                 android:text="@string/text_reset"
                                 tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonSetIntervalAlarm"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -432,7 +432,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:id="@+id/textView"
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
@@ -448,7 +448,7 @@
                             android:layout_marginVertical="10dp"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textView2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -473,7 +473,7 @@
                                 android:minWidth="70dp"
                                 android:orientation="vertical">
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberEveryXthSecond"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -485,7 +485,7 @@
                                     android:text="@={alarmsViewModel.tickAlarmSecond}"
                                     android:textSize="20sp" />
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberEveryXthMinute"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -497,7 +497,7 @@
                                     android:text="@={alarmsViewModel.tickAlarmMinute}"
                                     android:textSize="20sp" />
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberEveryXthHour"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -516,21 +516,21 @@
                                 android:checkedButton="@={alarmsViewModel.tickAlarmCheckedId}"
                                 android:onCheckedChanged="@{(_, id) -> alarmsViewModel.updateIsTickAlarmValid(id)}">
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonEveryXthSecond"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_second_number"
                                     android:textSize="20sp" />
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonEveryXthMinute"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_minute"
                                     android:textSize="20sp" />
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonEveryXthHour"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -539,7 +539,7 @@
 
                             </RadioGroup>
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textView3"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -558,7 +558,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonResetTickAlarmInput"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -569,7 +569,7 @@
                                 android:text="@string/text_reset"
                                 tools:ignore="ButtonStyle" />
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonSetTickAlarm"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

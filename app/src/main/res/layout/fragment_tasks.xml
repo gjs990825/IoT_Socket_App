@@ -62,7 +62,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -76,7 +76,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -99,21 +99,21 @@
                                 android:checkedButton="@={tasksViewModel.basicTaskRadioGroupConditionCheckedId}"
                                 android:orientation="vertical">
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonBasicTaskConditionBrightness"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_brightness"
                                     android:textSize="20sp" />
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonBasicTaskConditionTemperature"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_temperature_abbr"
                                     android:textSize="20sp" />
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonBasicTaskConditionPressure"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                                     android:textSize="20sp" />
                             </RadioGroup>
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -144,14 +144,14 @@
                                 android:checkedButton="@={tasksViewModel.basicTaskRadioGroupTypeCheckedId}"
                                 android:orientation="vertical">
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonBasicTaskTypeHigher"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_higher"
                                     android:textSize="20sp" />
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonBasicTaskTypeLower"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -175,7 +175,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editTextNumberBasicTaskInput"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -187,7 +187,7 @@
                                 android:text="@={tasksViewModel.basicTaskUserInput}"
                                 tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -196,7 +196,7 @@
                                 android:textStyle="bold" />
                         </LinearLayout>
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/buttonSetBasicTask"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -224,7 +224,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="5dp"
@@ -238,7 +238,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -261,14 +261,14 @@
                                 android:checkedButton="@={tasksViewModel.mappingTaskRadioGroupConditionCheckedId}"
                                 android:orientation="vertical">
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonMappingTaskConditionBrightness"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="@string/text_brightness"
                                     android:textSize="20sp" />
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonMappingTaskConditionTemperature"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -276,7 +276,7 @@
                                     android:textSize="20sp" />
 
 
-                                <RadioButton
+                                <com.google.android.material.radiobutton.MaterialRadioButton
                                     android:id="@+id/radioButtonMappingTaskConditionPressure"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -288,7 +288,7 @@
                                 style="@style/DividerVertical"
                                 android:layout_margin="10dp" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -306,7 +306,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -330,7 +330,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberMappingTaskMaxIn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -342,7 +342,7 @@
                                     android:minHeight="48dp"
                                     android:text="@={tasksViewModel.mappingTaskMaxIn}" />
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberMappingTaskMinIn"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -355,7 +355,7 @@
                                     android:text="@={tasksViewModel.mappingTaskMinIn}" />
                             </LinearLayout>
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -377,7 +377,7 @@
                                 android:gravity="center"
                                 android:orientation="vertical">
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberMappingTaskMaxOut"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -389,7 +389,7 @@
                                     android:minHeight="48dp"
                                     android:text="@={tasksViewModel.mappingTaskMaxOut}" />
 
-                                <EditText
+                                <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/editTextNumberMappingTaskMinOut"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
@@ -404,7 +404,7 @@
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/buttonSetMappingTask"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -1,22 +1,22 @@
-package com.maverick.iotsocket
+package com.maverick.iotsocket.model
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
-
-interface CommandOnClickListener {
-    fun onClick(command: Command)
-    fun onLongClick(command: Command)
-}
+import com.maverick.iotsocket.R
 
 class CommandAdapter(
     private val commandList: List<Command>,
     private val onClickListener: CommandOnClickListener
 ) :
     RecyclerView.Adapter<CommandAdapter.ViewHolder>() {
+    interface CommandOnClickListener {
+        fun onClick(command: Command)
+        fun onLongClick(command: Command)
+    }
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val commandName: TextView = view.findViewById(R.id.commandName)
         val commandContent: TextView = view.findViewById(R.id.commandContent)
@@ -42,8 +42,8 @@ class CommandAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val command = commandList[position]
-        holder.commandContent.text = command.commandContent
-        holder.commandName.text = command.commandName
+        holder.commandContent.text = command.content
+        holder.commandName.text = command.name
     }
 
     override fun getItemCount() = commandList.size

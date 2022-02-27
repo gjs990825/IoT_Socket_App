@@ -1,4 +1,4 @@
-package com.maverick.iotsocket
+package com.maverick.iotsocket.model
 
 /*
 * MIT License
@@ -32,6 +32,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothDeviceDecorator
+import com.maverick.iotsocket.R
 
 /**
  * Created by douglas on 10/04/2017.

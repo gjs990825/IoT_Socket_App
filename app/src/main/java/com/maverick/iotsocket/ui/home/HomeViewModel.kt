@@ -6,7 +6,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.maverick.iotsocket.ActionSettingHelper
+import com.maverick.iotsocket.util.ActionSettingHelper
 import com.maverick.iotsocket.connection.ConnectionManager
 import com.maverick.iotsocket.connection.SubscriptionCallback
 import com.maverick.iotsocket.model.IoTSocket

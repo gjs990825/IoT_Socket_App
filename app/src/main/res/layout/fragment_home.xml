@@ -76,7 +76,7 @@
                             app:tint="?android:attr/colorPrimary"
                             tools:ignore="ContentDescription" />
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -115,7 +115,7 @@
                             app:tint="?android:attr/colorError"
                             tools:ignore="ContentDescription" />
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -144,7 +144,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
@@ -158,7 +158,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -166,7 +166,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textPeripheralRelay"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -180,7 +180,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -188,7 +188,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textPeripheralLed"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -202,7 +202,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -210,7 +210,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textPeripheralBeeper"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -224,7 +224,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -232,7 +232,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textPeripheralMotor"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -259,7 +259,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
@@ -273,7 +273,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -281,7 +281,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textSensorTemperature"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -295,7 +295,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -303,7 +303,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textSensorPressure"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -317,7 +317,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -325,7 +325,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textSensorBrightness"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -352,7 +352,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
@@ -366,7 +366,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -374,7 +374,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textSystemTime"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -389,7 +389,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -397,7 +397,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:id="@+id/textSystemTemperature"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -434,7 +434,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="2"
@@ -448,7 +448,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
@@ -471,7 +471,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
@@ -494,7 +494,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
@@ -517,7 +517,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonResetDefaultAction"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -528,7 +528,7 @@
                                 android:text="@string/text_reset"
                                 tools:ignore="ButtonStyle" />
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonUpdateDefaultAction"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -564,7 +564,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -578,7 +578,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -586,7 +586,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editTextWiFiSSID"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -604,7 +604,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -612,7 +612,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <EditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/editTextWiFiPassword"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -625,7 +625,7 @@
 
                         </LinearLayout>
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/buttonUpdateWifiSetting"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -656,7 +656,7 @@
                         android:orientation="vertical"
                         android:padding="20dp">
 
-                        <TextView
+                        <com.google.android.material.textview.MaterialTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="2"
@@ -670,7 +670,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -678,7 +678,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonReboot"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -694,7 +694,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <TextView
+                            <com.google.android.material.textview.MaterialTextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
@@ -702,7 +702,7 @@
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
-                            <Button
+                            <com.google.android.material.button.MaterialButton
                                 android:id="@+id/buttonCalibrateTime"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -713,7 +713,7 @@
 
                         </LinearLayout>
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/buttonResetSystem"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

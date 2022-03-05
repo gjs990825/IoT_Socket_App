@@ -24,9 +24,9 @@
         <item>"Alarm add fail"</item>
         <item>"Alarm remove success"</item>
         <item>"Alarm remove fail"</item>
-        <item>"WiFi setting updating"</item>
-        <item>"TIME setting update success"</item>
-        <item>"TIME setting update fail"</item>
+        <item>"Wi-Fi setting updating"</item>
+        <item>"Time setting update success"</item>
+        <item>"Time setting update fail"</item>
         <item>"System rebooting"</item>
     </string-array>
 </resources>

@@ -2,31 +2,31 @@
 <resources>
     <string-array name="message_codes">
         <item>""</item>
-        <item>"Argument number error"</item>
-        <item>"Command flag not match"</item>
-        <item>"Operation success"</item>
-        <item>"Operation fail"</item>
-        <item>"Invalid input"</item>
-        <item>"Invalid action"</item>
-        <item>"Invalid condition"</item>
-        <item>"Reset Success"</item>
-        <item>"Command does not exist"</item>
-        <item>"Infrared capture start"</item>
-        <item>"Infrared capture success"</item>
-        <item>"Infrared capture fail"</item>
-        <item>"Task add success"</item>
-        <item>"Task add fail"</item>
-        <item>"Task duplicated"</item>
-        <item>"Task type invalid"</item>
-        <item>"Task remove success"</item>
-        <item>"Task remove fail"</item>
-        <item>"Alarm add success"</item>
-        <item>"Alarm add fail"</item>
-        <item>"Alarm remove success"</item>
-        <item>"Alarm remove fail"</item>
-        <item>"WiFi setting updating"</item>
-        <item>"TIME setting update success"</item>
-        <item>"TIME setting update fail"</item>
-        <item>"System rebooting"</item>
+        <item>"参数个数错误"</item>
+        <item>"命令参数不匹配"</item>
+        <item>"操作成功"</item>
+        <item>"操作失败"</item>
+        <item>"非法的输入"</item>
+        <item>"非法的动作"</item>
+        <item>"非法的情景"</item>
+        <item>"重置成功"</item>
+        <item>"命令不存在"</item>
+        <item>"红外捕获开始"</item>
+        <item>"红外捕获成功"</item>
+        <item>"红外捕获失败"</item>
+        <item>"任务添加成功"</item>
+        <item>"任务添加失败"</item>
+        <item>"任务重复"</item>
+        <item>"任务类型不可用"</item>
+        <item>"任务移除成功"</item>
+        <item>"任务移除失败"</item>
+        <item>"闹钟添加成功"</item>
+        <item>"闹钟添加失败"</item>
+        <item>"闹钟移除成功"</item>
+        <item>"闹钟移除失败"</item>
+        <item>"Wi-Fi设置正在更新"</item>
+        <item>"时间设置更新成功"</item>
+        <item>"时间设置更新失败"</item>
+        <item>"系统正在重启"</item>
     </string-array>
 </resources>

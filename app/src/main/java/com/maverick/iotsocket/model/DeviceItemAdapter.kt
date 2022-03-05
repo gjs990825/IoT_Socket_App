@@ -32,6 +32,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothDeviceDecorator
+import com.maverick.iotsocket.MyApplication.Companion.context
 import com.maverick.iotsocket.R
 
 /**
@@ -39,7 +40,7 @@ import com.maverick.iotsocket.R
  */
 class DeviceItemAdapter(mContext: Context, devices: List<BluetoothDevice>) :
     RecyclerView.Adapter<DeviceItemAdapter.ViewHolder>() {
-    private val mDevices: List<BluetoothDeviceDecorator> = decorateDevices(devices)
+    var devices: List<BluetoothDeviceDecorator> = decorateDevices(devices)
     private val mInflater: LayoutInflater =
         mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     private var mOnItemClickListener: OnAdapterItemClickListener? =
@@ -63,13 +64,13 @@ class DeviceItemAdapter(mContext: Context, devices: List<BluetoothDevice>) :
         holder: ViewHolder,
         position: Int
     ) {
-        val device: BluetoothDeviceDecorator = mDevices[position]
+        val device: BluetoothDeviceDecorator = devices[position]
         holder.tvName.text = if (TextUtils.isEmpty(device.name)) "---" else device.name
         holder.tvAddress.text = device.address
         holder.tvRSSI.text = if (device.rssi != 0) {
             device.rssi.toString()
         } else {
-            ""
+            context.getString(R.string.text_device_paired)
         }
         holder.itemView.setOnClickListener {
             mOnItemClickListener?.onItemClick(
@@ -79,10 +80,10 @@ class DeviceItemAdapter(mContext: Context, devices: List<BluetoothDevice>) :
         }
     }
 
-    override fun getItemCount(): Int = mDevices.size
+    override fun getItemCount(): Int = devices.size
 
-    val devices: List<BluetoothDeviceDecorator>
-        get() = mDevices
+//    val devices: List<BluetoothDeviceDecorator>
+//        get() = mDevices
 
     fun setOnAdapterItemClickListener(onItemClickListener: OnAdapterItemClickListener?) {
         mOnItemClickListener = onItemClickListener

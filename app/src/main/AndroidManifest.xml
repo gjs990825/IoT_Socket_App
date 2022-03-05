@@ -19,9 +19,10 @@
     <!-- Needed only if your app communicates with already-paired Bluetooth
            devices. -->
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <!--bibo01 : hardware option-->
-    <uses-feature android:name="android.hardware.bluetooth" android:required="false"/>
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <!-- MQTT -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

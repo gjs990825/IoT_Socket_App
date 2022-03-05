@@ -32,7 +32,7 @@
     <string name="text_on">ON</string>
     <string name="text_off">OFF</string>
     <string name="prompt_ack_timeout">Ack Timeout</string>
-    <string name="prompt_connection_error">Connection Error!</string>
+    <string name="prompt_connection_error">Connection Error</string>
     <string name="text_not_a_number" translatable="false">NaN</string>
     <string name="prompt_send_failed">Send Failed</string>
     <string name="text_interval_alarm_setting">Interval Alarm Setting</string>
@@ -113,4 +113,5 @@
     <string name="text_minute_abbr">M</string>
     <string name="text_second_abbr">S</string>
     <string name="placeholder_timer_2" >""</string>
+    <string name="text_device_paired">Paired</string>
 </resources>

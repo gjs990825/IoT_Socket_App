@@ -13,6 +13,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
     private val TAG = "BluetoothConnection"
     private var operationResultCallback: OperationResultCallback? = null
     private var subsList = ArrayList<String>()
+    private val bluetoothConnectTimeout = 6000L
 
     private val service = BluetoothService.getDefaultInstance()
     private val writer = BluetoothWriter(service)
@@ -39,7 +40,7 @@ class BluetoothConnection(private val bluetoothDevice: BluetoothDevice, connecti
                 if (isBusy) {
                     isBusy = false
                 }
-            }, 3000)
+            }, bluetoothConnectTimeout)
         }
     }
 

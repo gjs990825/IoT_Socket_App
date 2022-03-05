@@ -24,9 +24,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothDeviceDecorator
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothService
 import com.github.douglasjunior.bluetoothclassiclibrary.BluetoothStatus
-import com.maverick.iotsocket.model.DeviceItemAdapter
 import com.maverick.iotsocket.R
 import com.maverick.iotsocket.connection.ConnectionManager
+import com.maverick.iotsocket.model.DeviceItemAdapter
 import com.maverick.iotsocket.util.showToast
 import java.util.*
 
@@ -38,10 +38,10 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
     private val REQUEST_BT_CONNECT = 1
     private val REQUEST_BT_SCAN = 2
     private val REQUEST_ENABLE_BT = 3
-    private var pgBar: ProgressBar? = null
-    private var mMenu: Menu? = null
-    private var mRecyclerView: RecyclerView? = null
-    private var mAdapter: DeviceItemAdapter? = null
+    private lateinit var pgBar: ProgressBar
+    private lateinit var mMenu: Menu
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mAdapter: DeviceItemAdapter
 
     private var mBluetoothAdapter: BluetoothAdapter? = null
     private var mService: BluetoothService? = null
@@ -54,7 +54,7 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
 
         mRecyclerView = findViewById<View>(R.id.bluetoothListRecyclerView) as RecyclerView
         val lm = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        mRecyclerView!!.layoutManager = lm
+        mRecyclerView.layoutManager = lm
         pgBar = findViewById(R.id.bluetoothScanProgressBar)
 
         if (ContextCompat.checkSelfPermission(
@@ -87,8 +87,8 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
             startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
         } else {
             mAdapter = DeviceItemAdapter(this, mBluetoothAdapter!!.bondedDevices)
-            mAdapter!!.setOnAdapterItemClickListener(this)
-            mRecyclerView!!.adapter = mAdapter
+            mAdapter.setOnAdapterItemClickListener(this)
+            mRecyclerView.adapter = mAdapter
         }
     }
 
@@ -158,6 +158,7 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
             requestPermissions(arrayOf(Manifest.permission.BLUETOOTH_SCAN), REQUEST_BT_SCAN)
         } else {
             if (!mScanning) {
+                // TODO check location permission
                 mService?.startScan()
             } else {
                 mService?.stopScan()
@@ -178,22 +179,23 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Log.e(TAG, "onDeviceDiscovered: no permission")
             return
         }
         Log.d(
             TAG,
-            "onDeviceDiscovered: ${device.name} - ${device.address} - " +
+            "onDeviceDiscovered:rssi:$rssi - ${device.name} - ${device.address} - " +
                     Arrays.toString(device.uuids)
         )
         val dv = BluetoothDeviceDecorator(device, rssi)
-        val index = mAdapter!!.devices.indexOf(dv)
+        val index = mAdapter.devices.indexOf(dv)
         if (index < 0) {
-            mAdapter!!.devices.plus(dv)
-            mAdapter!!.notifyItemInserted(mAdapter!!.devices.size - 1)
+            mAdapter.devices = mAdapter.devices.plus(dv)
+            mAdapter.notifyItemInserted(mAdapter.itemCount - 1)
         } else {
-            mAdapter!!.devices[index].device = device
-            mAdapter!!.devices[index].rssi = rssi
-            mAdapter!!.notifyItemChanged(index)
+            mAdapter.devices[index].device = device
+            mAdapter.devices[index].rssi = rssi
+            mAdapter.notifyItemChanged(index)
         }
     }
 
@@ -206,15 +208,15 @@ class BluetoothConnectionActivity : AppCompatActivity(), BluetoothService.OnBlue
     override fun onStartScan() {
         Log.d(TAG, "onStartScan")
         mScanning = true
-        pgBar!!.visibility = View.VISIBLE
-        mMenu!!.findItem(R.id.bluetoothScan).title = "Stop"
+        pgBar.visibility = View.VISIBLE
+        mMenu.findItem(R.id.bluetoothScan).title = "Stop"
     }
 
     override fun onStopScan() {
         Log.d(TAG, "onStopScan")
         mScanning = false
-        pgBar!!.visibility = View.GONE
-        mMenu!!.findItem(R.id.bluetoothScan).title = "Start"
+        pgBar.visibility = View.GONE
+        mMenu.findItem(R.id.bluetoothScan).title = "Start"
     }
 
     override fun onDataRead(buffer: ByteArray, length: Int) {

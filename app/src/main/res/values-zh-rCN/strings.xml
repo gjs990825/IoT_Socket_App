@@ -104,4 +104,5 @@
     <string name="text_minute_abbr">@string/text_minute</string>
     <string name="text_second_abbr">@string/text_second_number</string>
     <string name="text_timer">定时器</string>
+    <string name="text_device_paired">已配对</string>
 </resources>

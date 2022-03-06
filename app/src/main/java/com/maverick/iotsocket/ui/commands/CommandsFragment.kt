@@ -79,7 +79,7 @@ class CommandsFragment : Fragment(), CommandOnClickListener {
             add(Command("红外捕获到预设1", "infrared capture 1"))
             add(Command("红外捕获到预设2", "infrared capture 2"))
             add(Command("红外捕获到预设3", "infrared capture 3"))
-            add(Command("任务：映射亮度到PWM输出", "task add motor brightness linear 0 100 -100 100"))
+            add(Command("任务：映射亮度到PWM输出", "task add pwm brightness linear 0 100 -100 100"))
             add(Command("闹钟：每秒翻转一次开关", "alarm add \"* * * * * *\" \"flip relay\" false"))
         }
     }

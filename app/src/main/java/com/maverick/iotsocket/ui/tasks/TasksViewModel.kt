@@ -87,7 +87,7 @@ class TasksViewModel : ViewModel() {
             maxOut != null &&
             minOut != null
         ) {
-            StringBuilder("task add motor ")
+            StringBuilder("task add pwm ")
                 .append("$condition ")
                 .append("linear ")
                 .append("$minIn ")
